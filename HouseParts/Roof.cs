@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
-    class Wall
+    class Roof : IPart
     {
+        public string PartName { get; set; }
     }
 }

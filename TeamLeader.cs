@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
-    class TeamLeader
+    class TeamLeader : IWorker
     {
+        public string Name { get; set; }
+        public string Position { get; set; }
+
+        public void DoWork()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

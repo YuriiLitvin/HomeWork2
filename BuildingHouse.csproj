@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Basement.cs" />
+    <Compile Include="HouseParts\Basement.cs" />
     <Compile Include="Builder.cs" />
-    <Compile Include="Roof.cs" />
-    <Compile Include="Door.cs" />
+    <Compile Include="HouseParts\Roof.cs" />
+    <Compile Include="HouseParts\Door.cs" />
     <Compile Include="House.cs" />
     <Compile Include="IPart.cs" />
     <Compile Include="IWorker.cs" />
@@ -54,8 +54,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="TeamLeader.cs" />
-    <Compile Include="Wall.cs" />
-    <Compile Include="Window.cs" />
+    <Compile Include="HouseParts\Wall.cs" />
+    <Compile Include="HouseParts\Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

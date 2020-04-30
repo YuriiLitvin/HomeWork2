@@ -8,5 +8,14 @@ namespace BuildingHouse
 {
     class House
     {
+        //public List<IPart> listOfParts;
+        public House(List<IPart> listOfParts) 
+        {
+            //listOfParts.Add();
+        
+        }
+    
+    
+    
     }
 }

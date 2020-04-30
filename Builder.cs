@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
-    class Builder
+    class Builder : IWorker
     {
+        public string Name { get; set; }
+        public string Position { get; set; } 
+
+        public void DoWork()
+        {
+            throw new NotImplementedException();
+        }
+        public void CheckIfDone() 
+        { 
+        
+        
+        }
+    
     }
 }
