@@ -8,13 +8,51 @@ namespace BuildingHouse
 {
     class Team
     {
-        public int TeamLeaderCount { get; set; }
+        public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
         
-        public Team(string teamLeader, string builderCount) 
+        public Team(string leaderCount, string builderCount) 
         {
-            TeamLeaderCount = Convert.ToInt32(teamLeader);
+            LeaderCount = Convert.ToInt32(leaderCount);
             BuilderCount = Convert.ToInt32(builderCount);
         }
+
+        public List<TeamLeader> GetLeaders()
+        {
+            List<TeamLeader> builders = new List<TeamLeader>();
+
+            for (int i = 0; i < LeaderCount; i++)
+            {
+                builders.Add(
+                    new TeamLeader()
+                    {
+                        Name = "Tommy #" + i,
+                        Position = "TeamLeader"
+                    });
+            }
+            return builders;
+        }
+        public List<Builder> GetBuilders()
+        {
+            List<Builder> builders = new List<Builder>();
+
+            for (int i = 0; i < BuilderCount; i++)
+            {
+                builders.Add(
+                    new Builder()
+                    {
+                        Name = "Bobby #" + i,
+                        Position = "Builder"
+                    });
+            }
+            return builders;
+        }
+    
+
+    
+    
+    
+    
+    
     }
 }

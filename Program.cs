@@ -10,6 +10,8 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
+            House myHouse = new House();
+
         }
     }
 }

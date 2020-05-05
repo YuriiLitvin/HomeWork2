@@ -8,8 +8,8 @@ namespace BuildingHouse
 {
     interface IPart
     {
-        string PartName { get; set; }
-
-
+        bool Done { get; set; }
+        bool CheckIfDone();
+        
     }
 }

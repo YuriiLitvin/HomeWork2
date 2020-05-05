@@ -15,11 +15,7 @@ namespace BuildingHouse
         {
             throw new NotImplementedException();
         }
-        public void CheckIfDone() 
-        { 
-        
-        
-        }
+       
     
     }
 }

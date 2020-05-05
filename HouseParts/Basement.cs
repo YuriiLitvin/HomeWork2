@@ -8,6 +8,11 @@ namespace BuildingHouse
 {
     class Basement : IPart
     {
-        public string PartName { get; set; }
+        public bool Done { get; set; }
+
+        public bool CheckIfDone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
