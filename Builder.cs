@@ -17,22 +17,22 @@ namespace BuildingHouse
 
             foreach (var part in myPlan.GetConstruction())
             {
-                int indexOfPart = myPlan.GetListOfParts().IndexOf(part);
-                bool status = myPlan.GetListOfParts()[indexOfPart].CheckIfDone();
+                //int indexOfPart = myPlan.GetListOfParts().IndexOf(part);
+                //bool status = myPlan.GetListOfParts()[indexOfPart].CheckIfDone();
 
-                if (status)
-                {
-                    Console.WriteLine($"{part.Name} is finished");
-                }
-                else
-                {
+                //if (status)
+                //{
+                //    Console.WriteLine($"{part.Name} is finished");
+                //}
+                //else
+                //{
                     for (int i = 0; i < part.PartCount; i++)
                     {
                         Console.WriteLine($"I start making {part.Name}#{i+1}");
                         //part.IsDone = true;
                     }
 
-                }
+                //}
 
 
             }
