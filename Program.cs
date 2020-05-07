@@ -10,8 +10,10 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
-            House myHouse = new House();
-
+            Builder builder = new Builder();
+            builder.DoWork();
+            
+            Console.ReadKey();
         }
     }
 }

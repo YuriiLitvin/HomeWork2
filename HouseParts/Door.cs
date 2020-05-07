@@ -8,11 +8,23 @@ namespace BuildingHouse
 {
     class Door: IPart
     {
-        public bool Done { get; set; }
+        public string Name { get; set; } = "Door";
+        public int PartCount { get; set; }
+        public bool IsDone { get; set; } = false;
+        
+
+        public Door(int partCount)
+        {
+            PartCount = partCount;
+        }
 
         public bool CheckIfDone()
         {
-            throw new NotImplementedException();
+            if (IsDone)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

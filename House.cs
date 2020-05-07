@@ -8,12 +8,11 @@ namespace BuildingHouse
 {
     class House
     {
-        public House() 
+        public House ()
         {
             
-        }
-    
-    
-    
+        }  
+
+
     }
 }

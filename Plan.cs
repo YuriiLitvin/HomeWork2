@@ -8,36 +8,26 @@ namespace BuildingHouse
 {
     class Plan
     {
-        readonly IPart basement = new Basement();
-        readonly IPart wall1 = new Wall();
-        readonly IPart wall2 = new Wall();
-        readonly IPart wall3 = new Wall();
-        readonly IPart wall4 = new Wall();
-        readonly IPart door = new Door();
-        readonly IPart window1 = new Window();
-        readonly IPart window2 = new Window();
-        readonly IPart window3 = new Window();
-        readonly IPart window4 = new Window();
-        readonly IPart roof = new Roof();
+        readonly IPart basement = new Basement(1);
+        readonly IPart wall = new Wall(4);
+        readonly IPart door = new Door(1);
+        readonly IPart window = new Window(4);
+        readonly IPart roof = new Roof(1);
 
+        //public List<IPart> Parts { get; set; }
+        //public string Name { get; set; }
 
-        public List<IPart> GetStructured()
+        public List<IPart> GetConstruction()
         {
-            List<IPart> BuildingPlan = new List<IPart>
+            List<IPart> ConstructionPlan = new List<IPart>
             {
-                basement,
-                wall1,
-                wall2,
-                wall3,
-                wall4,
+                basement, 
+                wall, 
                 door,
-                window1,
-                window2,
-                window3,
-                window4,
-                roof
+                window,
+                roof 
             };
-            return BuildingPlan;
+            return ConstructionPlan;
         }
 
         public List<IPart> GetListOfParts()
@@ -45,19 +35,15 @@ namespace BuildingHouse
             List<IPart> ListOfParts = new List<IPart>
             {
                 door,
-                wall1,
+                window,
                 roof,
-                window4,
-                wall4,
-                window1,
-                window2,
-                basement,
-                wall3,
-                window3,
-                wall2
-                
+                wall,
+                basement
+
             };
             return ListOfParts;
         }
+
+
     }
 }

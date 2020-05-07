@@ -8,7 +8,9 @@ namespace BuildingHouse
 {
     interface IPart
     {
-        bool Done { get; set; }
+        string Name { get; set; }
+        int PartCount { get; set; }
+        bool IsDone { get; set; }
         bool CheckIfDone();
         
     }
