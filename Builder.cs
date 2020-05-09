@@ -32,7 +32,7 @@ namespace BuildingHouse
                 }
             }
 
-            //Console.ReadKey();
+            Console.ReadKey();
 
         }
     }
