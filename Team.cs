@@ -43,7 +43,7 @@ namespace BuildingHouse
                 builders.Add(
                     new Builder()
                     {
-                        Name = "Bobby #" + i,
+                        Name = "Worker #" + i,
                         Position = "Builder"
                     });
             }

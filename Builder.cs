@@ -14,27 +14,22 @@ namespace BuildingHouse
         public void DoWork()
         {
             Plan myPlan = new Plan();
+            Team myTeam = new Team(1, 3);
+            List<Builder> builders = myTeam.GetBuilders();
 
-            foreach (var part in myPlan.GetConstruction())
+            for (int i = 0; i < myPlan.GetConstruction().Count; i++)
             {
-                //int indexOfPart = myPlan.GetListOfParts().IndexOf(part);
-                //bool status = myPlan.GetListOfParts()[indexOfPart].CheckIfDone();
 
-                //if (status)
-                //{
-                //    Console.WriteLine($"{part.Name} is finished");
-                //}
-                //else
-                //{
-                    for (int i = 0; i < part.PartCount; i++)
-                    {
-                        Console.WriteLine($"I start making {part.Name}#{i+1}");
-                        //part.IsDone = true;
-                    }
+                for (int j = 0; j < myPlan.GetConstruction()[i].PartCount; j++)
+                {
+                    double value = (i + j) / builders.Count;
+                    int t = Convert.ToInt32(Math.Round(value, 0));
+                    
+                    Console.WriteLine($"{builders[i + j - t * builders.Count].Name} " +
+                        $"{builders[i + j - t * builders.Count].Position}");
 
-                //}
-
-
+                    Console.WriteLine($"I do {myPlan.GetConstruction()[i].Name}#{j+1}\n"); 
+                }
             }
 
             //Console.ReadKey();

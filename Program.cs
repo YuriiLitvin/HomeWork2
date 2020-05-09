@@ -10,23 +10,35 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
-            //Builder builder = new Builder();
-            //builder.DoWork();
-            Team myTeam = new Team(1,2);
 
-            //for (int i = 0; i < myTeam.GetBuilders().Count; i++)
+            //List<char> parts = new List<char> {  'a' ,  'b', 'c', 'd', 'e' , 'f', 'g', 'h', 'i', 'j', 'k' };
+            //List<string> builders = new List<string> { "w1", "w2", "w3", "w4", "w5" };
+
+            //for (int i = 0; i < parts.Count; i++)
             //{
-            //    Console.WriteLine($"{builder.Name} {builder.Position}");
-            //    builder.DoWork();
+            //    double j = i / builders.Count;
+            //    int t = Convert.ToInt32(Math.Round(j, 0));
+            //    Console.WriteLine($"{builders[i - t * builders.Count]} makes {parts[i]}");
             //}
-            
+            //Console.ReadKey();
 
-            foreach (var builder in myTeam.GetBuilders())
-            {
-                Console.WriteLine($"{builder.Name} {builder.Position}");
-                builder.DoWork();
-            }
 
+            //Plan myPlan = new Plan();
+
+            //Team myTeam = new Team(1, 3);
+            //List<Builder> builders = myTeam.GetBuilders();
+            //for (int i = 0; i < myPlan.GetConstruction().Count; i++)
+            //{
+            //    double j = i / builders.Count;
+            //    int t = Convert.ToInt32(Math.Round(j, 0));
+            //    Console.WriteLine($"{builders[i - t * builders.Count].Name} " +
+            //        $"{builders[i - t * builders.Count].Position}");
+
+            //    //builders[i - t * builders.Count].DoWork();
+
+            //}
+            Builder builder = new Builder();
+            builder.DoWork();
 
             Console.ReadKey();
         }
