@@ -11,6 +11,7 @@ namespace BuildingHouse
         string Name { get; set; }
         int PartCount { get; set; }
         bool IsDone { get; set; }
+        int IndexBuild { get; set; }
         bool CheckIfDone();
         
     }

@@ -14,12 +14,10 @@ namespace BuildingHouse
         readonly IPart window = new Window(4);
         readonly IPart roof = new Roof(1);
 
-        //public List<IPart> Parts { get; set; }
-        //public string Name { get; set; }
-
-        public List<IPart> GetConstruction()
+        
+        public List<IPart> Get()
         {
-            List<IPart> ConstructionPlan = new List<IPart>
+            List<IPart> Plan = new List<IPart>
             {
                 basement, 
                 wall, 
@@ -27,12 +25,12 @@ namespace BuildingHouse
                 window,
                 roof 
             };
-            return ConstructionPlan;
+            return Plan;
         }
 
-        public List<IPart> GetListOfParts()
+        public List<IPart> GetList()
         {
-            List<IPart> ListOfParts = new List<IPart>
+            List<IPart> List = new List<IPart>
             {
                 door,
                 window,
@@ -41,7 +39,7 @@ namespace BuildingHouse
                 basement
 
             };
-            return ListOfParts;
+            return List;
         }
 
 

@@ -14,24 +14,30 @@ namespace BuildingHouse
         public void DoWork()
         {
             Plan myPlan = new Plan();
-            Team myTeam = new Team(1, 3);
+            Team myTeam = new Team(1, 5);
             List<Builder> builders = myTeam.GetBuilders();
+            var plan = myPlan.Get();
+            List<string> constructionPlan = new List<string>(); 
 
-            for (int i = 0; i < myPlan.GetConstruction().Count; i++)
+            for (int i = 0; i < plan.Count; i++)
             {
-
-                for (int j = 0; j < myPlan.GetConstruction()[i].PartCount; j++)
+                for (int j = 0; j < plan[i].PartCount; j++)
                 {
-                    double value = (i + j) / builders.Count;
-                    int t = Convert.ToInt32(Math.Round(value, 0));
-                    
-                    Console.WriteLine($"{builders[i + j - t * builders.Count].Name} " +
-                        $"{builders[i + j - t * builders.Count].Position}");
-
-                    Console.WriteLine($"I do {myPlan.GetConstruction()[i].Name}#{j+1}\n"); 
+                    constructionPlan.Add($"{plan[i].Name}#{j+1}");
                 }
-            }
 
+            }
+            for (int i = 0; i < constructionPlan.Count; i++)
+            {
+                double j = i / builders.Count;
+                int t = Convert.ToInt32(Math.Round(j, 0));
+                
+                Console.WriteLine($"{builders[i - t * builders.Count].Name} " +
+                     $"{builders[i - t * builders.Count].Position}");
+
+                Console.WriteLine($"I do {constructionPlan[i]}\n");
+
+            }
             Console.ReadKey();
 
         }

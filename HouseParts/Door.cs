@@ -11,7 +11,7 @@ namespace BuildingHouse
         public string Name { get; set; } = "Door";
         public int PartCount { get; set; }
         public bool IsDone { get; set; } = false;
-        
+        public int IndexBuild { get; set; } = 2;
 
         public Door(int partCount)
         {
