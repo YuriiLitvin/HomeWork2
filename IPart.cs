@@ -12,7 +12,7 @@ namespace BuildingHouse
         int PartCount { get; set; }
         bool IsDone { get; set; }
         int IndexBuild { get; set; }
-        bool CheckIfDone();
+        List<IPart> GetParts();
         
     }
 }

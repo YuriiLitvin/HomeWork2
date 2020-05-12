@@ -49,12 +49,32 @@ namespace BuildingHouse
             }
             return builders;
         }
-    
+        
+        public List<IPart> GetConstructionPlan()
+        {
+            Plan myPlan = new Plan();
+            var houseParts = myPlan.GetHouseParts();
 
-    
-    
-    
-    
-    
+
+
+            List<IPart> constructionList = new List<IPart>();
+            foreach (var part in houseParts)
+            {
+                foreach (var item in part.GetParts())
+                {
+                    constructionList.Add(item);
+                }
+            }
+
+            List<IPart> constructionPlan = constructionList.OrderBy(x => x.IndexBuild).ToList();
+
+            return constructionPlan;
+        }
+
+
+
+
+
+
     }
 }

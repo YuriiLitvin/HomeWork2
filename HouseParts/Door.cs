@@ -8,23 +8,33 @@ namespace BuildingHouse
 {
     class Door: IPart
     {
-        public string Name { get; set; } = "Door";
+        public string Name { get; set; } 
         public int PartCount { get; set; }
-        public bool IsDone { get; set; } = false;
-        public int IndexBuild { get; set; } = 2;
+        public bool IsDone { get; set; }
+        public int IndexBuild { get; set; } 
 
-        public Door(int partCount)
+        public Door(int partCount, int indexBuild)//, bool isDone)
         {
             PartCount = partCount;
+            IndexBuild = indexBuild;
+            //IsDone = isDone;
         }
 
-        public bool CheckIfDone()
+        public List<IPart> GetParts()
         {
-            if (IsDone)
+            List<IPart> doors = new List<IPart>();
+
+            for (int i = 1; i <= PartCount; i++)
             {
-                return true;
+                doors.Add(new Door(1,2)//,false)
+                {
+                    Name = "Door" + i,
+                    //PartCount = 1,
+                    ////IndexBuild = 2,
+                    IsDone = false
+                });
             }
-            return false;
+            return doors;
         }
     }
 }
