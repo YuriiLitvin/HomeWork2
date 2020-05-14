@@ -28,7 +28,7 @@ namespace BuildingHouse
                 builders.Add(
                     new TeamLeader()
                     {
-                        Name = "Tommy #" + i,
+                        Name = "Tim #" + i,
                         Position = "TeamLeader"
                     });
             }

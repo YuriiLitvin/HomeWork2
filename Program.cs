@@ -12,9 +12,16 @@ namespace BuildingHouse
         {
 
 
+            //Team myTeam = new Team(1,5);
+            //var builders = myTeam.GetBuilders();
+            //while (true)
+            //{
+            //    for (int i = 0; i < builders.Count; i++)
+            //    {
+            //        builders[i].DoWork(myTeam.GetConstructionPlan());
+            //    }
 
-            
-
+            //}
 
             Builder builder = new Builder();
             builder.DoWork();

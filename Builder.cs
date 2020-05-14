@@ -14,12 +14,19 @@ namespace BuildingHouse
         public void DoWork()
         {
             Team myTeam = new Team(1, 3);
-            
+
             List<Builder> builders = myTeam.GetBuilders();
-            
+
             List<IPart> constructionPlan = myTeam.GetConstructionPlan();
-            
            
+            //    ////if (!constructionPlan[i].IsDone)
+            //    ////{
+            //    ////    Console.WriteLine($"{this.Name}  {this.Position}");
+            //    ////    Console.WriteLine($"I do {constructionPlan[i].Name}\n");
+            //    ////    constructionPlan[i].IsDone = true;
+            //    ////}
+
+
             for (int i = 0; i < constructionPlan.Count; i++)
             {
                 double j = i / builders.Count;
@@ -28,10 +35,15 @@ namespace BuildingHouse
                 Console.WriteLine($"{builders[i - t * builders.Count].Name} " +
                      $"{builders[i - t * builders.Count].Position}");
 
-                Console.WriteLine($"I do {constructionPlan[i].Name}\n");
+                if (!constructionPlan[i].IsDone)
+                {
+                    Console.WriteLine($"I do {constructionPlan[i].Name}\n");
+                    constructionPlan[i].IsDone = true;
+                }
             }
-
-
+           
         }
+
+
     }
 }
