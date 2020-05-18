@@ -8,29 +8,67 @@ namespace BuildingHouse
 {
     class Plan
     {
-        private readonly IPart basement = new Basement(1, 0);//,false);
-        private readonly IPart wall = new Wall(4,1);//,false);
-        private readonly IPart door = new Door(1,2);//,false);
-        private readonly IPart window = new Window(4,3);//,false);
-        private readonly IPart roof = new Roof(1,4);//,false);
+        //private readonly IPart basement = new Basement(1, 0);//,false);
+        //private readonly IPart wall = new Wall(4,1);//,false);
+        //private readonly IPart door = new Door(1,2);//,false);
+        //private readonly IPart window = new Window(4,3);//,false);
+        //private readonly IPart roof = new Roof(1,4);//,false);
 
-
-
-
-        public List<IPart> GetHouseParts()
+        public Dictionary<Type, int> GetHousePartTypesWithIndexes()
         {
-            List<IPart> List = new List<IPart>
+            Dictionary<Type, int> PartTypesWithIndexes = new Dictionary<Type, int>
             {
-                door,
-                window,
-                roof,
-                wall,
-                basement
-
+                { typeof(Basement), 0 },
+                { typeof(Wall), 1 },
+                { typeof(Door), 2 },
+                { typeof(Window), 3 },
+                { typeof(Roof), 4 }
             };
-            return List;
+            return PartTypesWithIndexes;
         }
 
+        public List<IPart> GetConstructionPlan()
+        {
+            Plan myPlan = new Plan();
 
+            var housePartTypes = myPlan.GetHousePartTypesWithIndexes()
+                .OrderBy(_ => _.Value)
+                .Select(_ => _.Key);
+
+            List<IPart> constructionList = new List<IPart>();
+            foreach (var part in housePartTypes)
+            {
+                Console.WriteLine($"Please enter a number of {part.Name}s");
+                var partCount = Convert.ToInt32(Console.ReadLine());
+                foreach (var item in GetParts(part, partCount))
+                {
+                    constructionList.Add(item);
+                }
+            }
+
+            List<IPart> constructionPlan = constructionList.ToList();
+
+            return constructionPlan;
+        }
+
+        public List<IPart> GetParts(Type partType, int partCount)
+        {
+            List<IPart> parts = new List<IPart>();
+
+            for (int i = 1; i <= partCount; i++)
+            {
+                IPart createdPart = CreatePart(partType);
+
+                createdPart.Name = partType.Name + i;
+                createdPart.IsDone = false;
+                parts.Add(createdPart);
+            }
+            return parts;
+        }
+
+        private IPart CreatePart(Type partType)
+        {
+            return Activator.CreateInstance(partType) as IPart;
+        }
     }
 }

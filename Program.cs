@@ -10,21 +10,9 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
-
-
-            //Team myTeam = new Team(1,5);
-            //var builders = myTeam.GetBuilders();
-            //while (true)
-            //{
-            //    for (int i = 0; i < builders.Count; i++)
-            //    {
-            //        builders[i].DoWork(myTeam.GetConstructionPlan());
-            //    }
-
-            //}
-
-            Builder builder = new Builder();
-            builder.DoWork();
+            Team myTeam = new Team(3, 1);
+            Plan plan = new Plan(); 
+            myTeam.CallBuilders(plan);
 
             Console.ReadKey();
         }

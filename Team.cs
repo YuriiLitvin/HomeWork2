@@ -19,24 +19,24 @@ namespace BuildingHouse
             BuilderCount = builderCount;
         }
 
-        public List<TeamLeader> GetLeaders()
+        public List<IWorker> GetLeaders()
         {
-            List<TeamLeader> builders = new List<TeamLeader>();
+            List<IWorker> leaders = new List<IWorker>();
 
             for (int i = 1; i <= LeaderCount; i++)
             {
-                builders.Add(
+                leaders.Add(
                     new TeamLeader()
                     {
                         Name = "Tim #" + i,
                         Position = "TeamLeader"
                     });
             }
-            return builders;
+            return leaders;
         }
-        public List<Builder> GetBuilders()
+        public List<IWorker> GetBuilders()
         {
-            List<Builder> builders = new List<Builder>();
+            List<IWorker> builders = new List<IWorker>();
 
             for (int i = 1; i <= BuilderCount; i++)
             {
@@ -49,32 +49,28 @@ namespace BuildingHouse
             }
             return builders;
         }
-        
-        public List<IPart> GetConstructionPlan()
+
+        public List<IWorker> GetWorkers() => GetLeaders().Concat(GetBuilders()).ToList();
+
+        public void CallBuilders(Plan myPlan)
         {
-            Plan myPlan = new Plan();
-            var houseParts = myPlan.GetHouseParts();
+            List<IWorker> workers = this.GetWorkers();
 
+            List<IPart> constructionPlan = myPlan.GetConstructionPlan();
 
-
-            List<IPart> constructionList = new List<IPart>();
-            foreach (var part in houseParts)
+            int partIndex = 0;
+            int builderIndex = 0;
+            while (partIndex < constructionPlan.Count)
             {
-                foreach (var item in part.GetParts())
-                {
-                    constructionList.Add(item);
-                }
+                Console.WriteLine($"{workers[builderIndex].Name} " +
+                     $"{workers[builderIndex].Position}");
+
+                var partToWorkWith = constructionPlan[partIndex];
+                
+                var isDone = workers[builderIndex].DoWork(partToWorkWith);
+                if (isDone) partIndex++;
+                builderIndex = (builderIndex + 1) % workers.Count;
             }
-
-            List<IPart> constructionPlan = constructionList.OrderBy(x => x.IndexBuild).ToList();
-
-            return constructionPlan;
         }
-
-
-
-
-
-
     }
 }

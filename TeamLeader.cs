@@ -11,9 +11,12 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
 
-        public void DoWork()
+        public bool DoWork(IPart part)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"I observe that {part.Name} " + 
+                (part.IsDone ? "is done" : "isn't done"));
+
+            return part.IsDone;
         }
     }
 }

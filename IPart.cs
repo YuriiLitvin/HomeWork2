@@ -9,10 +9,6 @@ namespace BuildingHouse
     interface IPart
     {
         string Name { get; set; }
-        int PartCount { get; set; }
         bool IsDone { get; set; }
-        int IndexBuild { get; set; }
-        List<IPart> GetParts();
-        
     }
 }

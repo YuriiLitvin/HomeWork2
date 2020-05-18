@@ -9,9 +9,9 @@ namespace BuildingHouse
     interface IWorker
     {
         string Name { get; set; }
+
         string Position { get; set; }
 
-        void DoWork();
-    
+        bool DoWork(IPart part);    
     }
 }
