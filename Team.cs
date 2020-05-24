@@ -52,7 +52,7 @@ namespace BuildingHouse
 
         public List<IWorker> GetWorkers() => GetLeaders().Concat(GetBuilders()).ToList();
 
-        public void CallBuilders(Plan myPlan)
+        public void GetToWork(Plan myPlan)
         {
             List<IWorker> workers = this.GetWorkers();
 
@@ -68,7 +68,9 @@ namespace BuildingHouse
                 var partToWorkWith = constructionPlan[partIndex];
                 
                 var isDone = workers[builderIndex].DoWork(partToWorkWith);
+                
                 if (isDone) partIndex++;
+                
                 builderIndex = (builderIndex + 1) % workers.Count;
             }
         }
