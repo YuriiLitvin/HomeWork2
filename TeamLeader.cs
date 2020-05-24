@@ -15,7 +15,7 @@ namespace BuildingHouse
         public bool DoWork(List<IPart> list)
         {
             float totalPercent = 0.0f;
-            float partPercent = 100 / list.Count;
+            float partPercent = 100.0f / (float)list.Count;
             
             foreach (var part in list)
             {
