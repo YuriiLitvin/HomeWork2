@@ -11,15 +11,18 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
 
-        public bool DoWork(IPart part)
+        public bool DoWork(List<IPart> list)
         {
-            if (!part.IsDone)
+            foreach (var part in list)
             {
-                Console.WriteLine($"I do {part.Name}\n");
-                part.IsDone = true;
+                if (!part.IsDone)
+                {
+                    Console.WriteLine($"I do {part.Name}\n");
+                    part.IsDone = true;
+                    return part.IsDone;
+                }
             }
-
-            return part.IsDone;
+            return true;
         }
     }
 }

@@ -12,6 +12,6 @@ namespace BuildingHouse
 
         string Position { get; set; }
 
-        bool DoWork(IPart part);    
+        bool DoWork(List<IPart> list);    
     }
 }

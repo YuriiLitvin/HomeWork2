@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,12 +12,21 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
 
-        public bool DoWork(IPart part)
+        public bool DoWork(List<IPart> list)
         {
-            Console.WriteLine($"I observe that {part.Name} " + 
-                (part.IsDone ? "is done" : "isn't done"));
-
-            return part.IsDone;
+            float totalPercent = 0.0f;
+            float partPercent = 100 / list.Count;
+            
+            foreach (var part in list)
+            {
+                if (part.IsDone)
+                {
+                    Console.WriteLine($"{part.Name} completed");
+                    totalPercent += partPercent;
+                }
+            }
+            Console.WriteLine($"Construction completed: {totalPercent}%\n");
+            return false;
         }
     }
 }

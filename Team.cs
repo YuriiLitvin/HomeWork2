@@ -23,12 +23,12 @@ namespace BuildingHouse
         {
             List<IWorker> leaders = new List<IWorker>();
 
-            for (int i = 1; i <= LeaderCount; i++)
+            for (int leaderIndex = 1; leaderIndex <= LeaderCount; leaderIndex++)
             {
                 leaders.Add(
                     new TeamLeader()
                     {
-                        Name = "Tim #" + i,
+                        Name = "Tim #" + leaderIndex,
                         Position = "TeamLeader"
                     });
             }
@@ -38,12 +38,12 @@ namespace BuildingHouse
         {
             List<IWorker> builders = new List<IWorker>();
 
-            for (int i = 1; i <= BuilderCount; i++)
+            for (int leaderIndex = 1; leaderIndex <= BuilderCount; leaderIndex++)
             {
                 builders.Add(
                     new Builder()
                     {
-                        Name = "Worker #" + i,
+                        Name = "Worker #" + leaderIndex,
                         Position = "Builder"
                     });
             }
@@ -65,14 +65,19 @@ namespace BuildingHouse
                 Console.WriteLine($"{workers[builderIndex].Name} " +
                      $"{workers[builderIndex].Position}");
 
-                var partToWorkWith = constructionPlan[partIndex];
-                
-                var isDone = workers[builderIndex].DoWork(partToWorkWith);
+                var isDone = workers[builderIndex].DoWork(constructionPlan);
                 
                 if (isDone) partIndex++;
                 
                 builderIndex = (builderIndex + 1) % workers.Count;
             }
+            for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
+            {
+                Console.WriteLine($"{workers[leaderIndex].Name} " +
+                     $"{workers[leaderIndex].Position}");
+                workers[leaderIndex].DoWork(constructionPlan);
+            }
+            
         }
     }
 }
