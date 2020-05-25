@@ -12,11 +12,11 @@ namespace BuildingHouse
         {
             Dictionary<Type, int> PartTypesWithIndexes = new Dictionary<Type, int>
             {
-                { typeof(Basement), 0 },
-                { typeof(Wall), 1 },
+                { typeof(Roof), 4 },
                 { typeof(Door), 2 },
+                { typeof(Basement), 0 },
                 { typeof(Window), 3 },
-                { typeof(Roof), 4 }
+                { typeof(Wall), 1 }
             };
             return PartTypesWithIndexes;
         }
