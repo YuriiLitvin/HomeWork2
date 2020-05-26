@@ -59,19 +59,31 @@ namespace BuildingHouse
 
             List<IPart> constructionPlan = myPlan.GetConstructionPlan();
 
-            Dictionary<int, string> constructionOrder = new Dictionary<int, string>();
+            Random rand = new Random();
+            int randomIndex = rand.Next(0,constructionPlan.Count);
             
-            for(int partIndex = 0; partIndex < constructionPlan.Count; partIndex++)
+            Dictionary<int, string> constructionOrder = new Dictionary<int, string>();
+            for (int partIndex = 0; partIndex < constructionPlan.Count; partIndex++)
             {
                 constructionOrder.Add(partIndex,constructionPlan[partIndex].Name);
             }
+
             
-            
-            
-            
-            
-            
-            foreach (KeyValuePair<int, string> pair in constructionOrder)
+            Dictionary<int, string> disorderedConstr = new Dictionary<int, string>();
+            while (constructionOrder.Count!=disorderedConstr.Count)
+            {
+                if(constructionOrder.ContainsKey(rand.Next(0,constructionPlan.Count))) 
+                {
+                    disorderedConstr.Add(constructionOrder.Key, constructionOrder.Value);
+                
+                }
+            }
+
+
+
+
+
+            foreach (KeyValuePair<int, string> pair in disorderedConstr)
             {
                 Console.WriteLine(pair);
             }
