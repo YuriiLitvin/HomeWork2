@@ -73,8 +73,10 @@ namespace BuildingHouse
             while (constructionOrder.Count!=disorderedConstr.Count)
             {
                 int randomIndex = rand.Next(0, constructionPlan.Count);
+                // constructionOrder will always have this key
                 if (constructionOrder.ContainsKey(randomIndex)) 
                 {
+                    // add a value if there is already a value? add if there isn't :)
                     if (disorderedConstr.ContainsKey(randomIndex))
                     {
                         disorderedConstr.Add(randomIndex, constructionOrder[randomIndex]);
