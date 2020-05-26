@@ -75,15 +75,14 @@ namespace BuildingHouse
                 int randomIndex = rand.Next(0, constructionPlan.Count);
                 if (constructionOrder.ContainsKey(randomIndex)) 
                 {
-                    disorderedConstr.Add(constructionOrder[randomIndex].Key, 
-                        constructionOrder[randomIndex].Value);
+                    if (disorderedConstr.ContainsKey(randomIndex))
+                    {
+                        disorderedConstr.Add(randomIndex, constructionOrder[randomIndex]);
+                    }
+                    
                 
                 }
             }
-
-
-
-
 
             foreach (KeyValuePair<int, string> pair in disorderedConstr)
             {
