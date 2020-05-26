@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,34 +51,58 @@ namespace BuildingHouse
             return builders;
         }
 
-        public List<IWorker> GetWorkers() => GetLeaders().Concat(GetBuilders()).ToList();
+        //public List<IWorker> GetWorkers() => GetLeaders().Concat(GetBuilders()).ToList();
 
         public void GetToWork(Plan myPlan)
         {
-            List<IWorker> workers = this.GetWorkers();
+            //List<IWorker> workers = this.GetWorkers();
 
             List<IPart> constructionPlan = myPlan.GetConstructionPlan();
 
-            int partIndex = 0;
-            int builderIndex = 0;
-            while (partIndex < constructionPlan.Count)
+            Dictionary<int, string> constructionOrder = new Dictionary<int, string>();
+            
+            for(int partIndex = 0; partIndex < constructionPlan.Count; partIndex++)
             {
-                Console.WriteLine($"{workers[builderIndex].Name} " +
-                     $"{workers[builderIndex].Position}");
-
-                var isDone = workers[builderIndex].DoWork(constructionPlan);
-                
-                if (isDone) partIndex++;
-                
-                builderIndex = (builderIndex + 1) % workers.Count;
-            }
-            for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
-            {
-                Console.WriteLine($"{workers[leaderIndex].Name} " +
-                     $"{workers[leaderIndex].Position}");
-                workers[leaderIndex].DoWork(constructionPlan);
+                constructionOrder.Add(partIndex,constructionPlan[partIndex].Name);
             }
             
+            
+            
+            
+            
+            
+            foreach (KeyValuePair<int, string> pair in constructionOrder)
+            {
+                Console.WriteLine(pair);
+            }
+
+
+
+
+
+
+
+
+            //int partIndex = 0;
+            //int builderIndex = 0;
+            //while (partIndex < constructionPlan.Count)
+            //{
+            //    Console.WriteLine($"{workers[builderIndex].Name} " +
+            //         $"{workers[builderIndex].Position}");
+
+            //    var isDone = workers[builderIndex].DoWork(constructionPlan);
+
+            //    if (isDone) partIndex++;
+
+            //    builderIndex = (builderIndex + 1) % workers.Count;
+            //}
+            //for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
+            //{
+            //    Console.WriteLine($"{workers[leaderIndex].Name} " +
+            //         $"{workers[leaderIndex].Position}");
+            //    workers[leaderIndex].DoWork(constructionPlan);
+            //}
+
         }
     }
 }

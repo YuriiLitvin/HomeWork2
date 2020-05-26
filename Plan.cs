@@ -40,7 +40,7 @@ namespace BuildingHouse
                 }
             }
 
-            List<IPart> constructionPlan = constructionList.ToList();
+            List<IPart> constructionPlan = constructionList;
 
             return constructionPlan;
         }
