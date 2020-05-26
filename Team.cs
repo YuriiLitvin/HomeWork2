@@ -60,7 +60,7 @@ namespace BuildingHouse
             List<IPart> constructionPlan = myPlan.GetConstructionPlan();
 
             Random rand = new Random();
-            int randomIndex = rand.Next(0,constructionPlan.Count);
+            
             
             Dictionary<int, string> constructionOrder = new Dictionary<int, string>();
             for (int partIndex = 0; partIndex < constructionPlan.Count; partIndex++)
@@ -72,9 +72,11 @@ namespace BuildingHouse
             Dictionary<int, string> disorderedConstr = new Dictionary<int, string>();
             while (constructionOrder.Count!=disorderedConstr.Count)
             {
-                if(constructionOrder.ContainsKey(rand.Next(0,constructionPlan.Count))) 
+                int randomIndex = rand.Next(0, constructionPlan.Count);
+                if (constructionOrder.ContainsKey(randomIndex)) 
                 {
-                    disorderedConstr.Add(constructionOrder.Key, constructionOrder.Value);
+                    disorderedConstr.Add(constructionOrder[randomIndex].Key, 
+                        constructionOrder[randomIndex].Value);
                 
                 }
             }
