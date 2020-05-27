@@ -70,18 +70,15 @@ namespace BuildingHouse
 
             
             Dictionary<int, string> disorderedConstr = new Dictionary<int, string>();
-            while (constructionOrder.Count!=disorderedConstr.Count)
+            while (disorderedConstr.Count < constructionOrder.Count)
             {
                 int randomIndex = rand.Next(0, constructionPlan.Count);
-                if (constructionOrder.ContainsKey(randomIndex)) 
-                {
-                    if (disorderedConstr.ContainsKey(randomIndex))
-                    {
-                        disorderedConstr.Add(randomIndex, constructionOrder[randomIndex]);
-                    }
-                    
                 
+                if (!disorderedConstr.ContainsKey(randomIndex))
+                {
+                    disorderedConstr.Add(randomIndex, constructionOrder[randomIndex]);
                 }
+
             }
 
             foreach (KeyValuePair<int, string> pair in disorderedConstr)
