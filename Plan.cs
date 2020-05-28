@@ -20,8 +20,44 @@ namespace BuildingHouse
             };
             return PartTypesWithIndexes;
         }
+       
+        public Dictionary<int,IPart> GetSpecification()
+        {
+            List<IPart> constructionList = this.GetConstructionList();
 
-        public List<IPart> GetConstructionPlan()
+            Dictionary<int, IPart> checkList = new Dictionary<int, IPart>();
+            for (int partIndex = 0; partIndex < constructionList.Count; partIndex++)
+            {
+                checkList.Add(partIndex, constructionList[partIndex]);
+            }
+
+
+
+            Random rand = new Random();
+            Dictionary<int, IPart> specification = new Dictionary<int, IPart>();
+            while (specification.Count < checkList.Count)
+            {
+                int randomIndex = rand.Next(0, constructionList.Count);
+
+                if (!specification.ContainsKey(randomIndex))
+                {
+                    specification.Add(randomIndex, checkList[randomIndex]);
+                }
+
+            }
+
+            //foreach (KeyValuePair<int, IPart> pair in specification)
+            //{
+            //    Console.WriteLine(pair);
+            //}
+
+
+            return specification;
+        }
+
+
+
+        public List<IPart> GetConstructionList()
         {
             Plan myPlan = new Plan();
 
@@ -39,10 +75,9 @@ namespace BuildingHouse
                     constructionList.Add(item);
                 }
             }
+            return constructionList;
+            
 
-            List<IPart> constructionPlan = constructionList;
-
-            return constructionPlan;
         }
 
         public List<IPart> GetParts(Type partType, int partCount)

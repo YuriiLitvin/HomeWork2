@@ -12,6 +12,6 @@ namespace BuildingHouse
 
         string Position { get; set; }
 
-        bool DoWork(List<IPart> list);    
+        bool DoWork(Dictionary<int, IPart> specification, int partIndex);    
     }
 }

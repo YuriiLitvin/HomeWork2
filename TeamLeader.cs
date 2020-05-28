@@ -12,16 +12,16 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
 
-        public bool DoWork(List<IPart> list)
+        public bool DoWork(Dictionary<int, IPart> specification, int partIndex)
         {
             float totalPercent = 0.0f;
-            float partPercent = 100.0f / (float)list.Count;
-            
-            foreach (var part in list)
+            float partPercent = 100.0f / (float)specification.Count;
+
+            foreach (KeyValuePair<int, IPart> pair in specification)
             {
-                if (part.IsDone)
+                if (pair.Value.IsDone)
                 {
-                    Console.WriteLine($"{part.Name} completed");
+                    Console.WriteLine($"{pair.Value.Name} completed");
                     totalPercent += partPercent;
                 }
             }

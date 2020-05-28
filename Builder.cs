@@ -11,18 +11,27 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
 
-        public bool DoWork(List<IPart> list)
+        public bool DoWork(Dictionary<int, IPart> specification, int partToDoIndex)
         {
-            foreach (var part in list)
+            foreach (KeyValuePair<int, IPart> part in specification)
             {
-                if (!part.IsDone)
+
+                if (part.Key == partToDoIndex & !part.Value.IsDone)
                 {
-                    Console.WriteLine($"I do {part.Name}\n");
-                    part.IsDone = true;
-                    return part.IsDone;
+                    Console.WriteLine($"**************I completed {part.Value.Name}\n");
+                    part.Value.IsDone = true;
+                    return part.Value.IsDone;
                 }
+                
+                else
+                {
+                    Console.WriteLine($"I can't do {part.Value.Name}" +
+                        $" because {specification[partToDoIndex].Name} is not completed");
+                    
+                }
+
             }
-            return true;
+            return false;
         }
     }
 }
