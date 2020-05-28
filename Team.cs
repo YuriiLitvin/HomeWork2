@@ -61,17 +61,31 @@ namespace BuildingHouse
 
             int partToDoIndex = 0;
             int builderIndex = 0;
+            Random random = new Random();
+            workers[builderIndex].Energy = random.Next(80, 100);
+
             while (partToDoIndex < specification.Count)
             {
-               
-                    Console.WriteLine($"{workers[builderIndex].Name} " +
-                         $"{workers[builderIndex].Position}");
-
-                    var isDone = workers[builderIndex].DoWork(specification,partToDoIndex);
+                Console.WriteLine($"{workers[builderIndex].Name} " +
+                        $"{workers[builderIndex].Position}");
+                
+                if(workers[builderIndex].Energy >= 80)
+                {
+                    var isDone = workers[builderIndex].DoWork(specification, partToDoIndex);
 
                     if (isDone) partToDoIndex++;
+                    workers[builderIndex].Energy += random.Next(5,15); 
+                }
+                else
+                {
+                    Console.WriteLine($"\n{workers[builderIndex].Name} " +
+                          $"{workers[builderIndex].Position}");
+                    Console.WriteLine("I can't work now. I need day off");
+                    workers[builderIndex].Energy += random.Next(5, 15);
+                }
 
-                    builderIndex = (builderIndex + 1) % workers.Count;
+
+                builderIndex = (builderIndex + 1) % workers.Count;
 
                 
             }

@@ -11,6 +11,8 @@ namespace BuildingHouse
         string Name { get; set; }
 
         string Position { get; set; }
+        
+        int Energy { get; set; }
 
         bool DoWork(Dictionary<int, IPart> specification, int partIndex);    
     }

@@ -11,9 +11,11 @@ namespace BuildingHouse
     {
         public string Name { get; set; }
         public string Position { get; set; }
+        public int Energy { get; set; }
 
         public bool DoWork(Dictionary<int, IPart> specification, int partIndex)
         {
+            Random random = new Random();
             float totalPercent = 0.0f;
             float partPercent = 100.0f / (float)specification.Count;
 
@@ -26,6 +28,7 @@ namespace BuildingHouse
                 }
             }
             Console.WriteLine($"Construction completed: {totalPercent}%\n");
+            this.Energy = random.Next(10, 20);
             return false;
         }
     }
