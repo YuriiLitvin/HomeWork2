@@ -30,6 +30,7 @@ namespace BuildingHouse
                 }
                 Energy = GetEnergyLevel(true);
                 Console.WriteLine($"Construction completed: {totalPercent}%\n");
+                if (totalPercent == 100.000008f) return true;
             }
             else
             {

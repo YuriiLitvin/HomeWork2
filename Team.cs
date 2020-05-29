@@ -70,22 +70,26 @@ namespace BuildingHouse
                 Console.WriteLine($"\n{workers[builderIndex].Name} " +
                         $"{workers[builderIndex].Position}");
 
-                var isDone = workers[builderIndex].DoWork(specification, partToDoIndex);
+                bool isDone = workers[builderIndex].DoWork(specification, partToDoIndex);
 
                 if (isDone) partToDoIndex++;
 
                 builderIndex = (builderIndex + 1) % workers.Count;
-
-
             }
-
-            for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
+            while (true)
             {
-                Console.WriteLine($"\n{workers[leaderIndex].Name} " +
-                     $"{workers[leaderIndex].Position}");
-                workers[leaderIndex].DoWork(specification, partToDoIndex);
-            }
+                bool finish = false;
 
+                for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
+                {
+                    
+                    Console.WriteLine($"\n{workers[leaderIndex].Name} " +
+                         $"{workers[leaderIndex].Position}");
+                    finish = workers[leaderIndex].DoWork(specification, partToDoIndex);
+                    
+                }
+                if (finish) break;
+            }
         }
     }
 }
