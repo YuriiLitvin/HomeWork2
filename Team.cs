@@ -12,8 +12,8 @@ namespace BuildingHouse
         public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
         readonly Random random = new Random();
-        
-        public Team(int leaderCount, int builderCount) 
+
+        public Team(int leaderCount, int builderCount)
         {
             //LeaderCount = Convert.ToInt32(leaderCount);
             //BuilderCount = Convert.ToInt32(builderCount);
@@ -60,33 +60,23 @@ namespace BuildingHouse
         {
             List<IWorker> workers = this.GetWorkers();
 
-            Dictionary<int,IPart> specification = myPlan.GetSpecification();
+            Dictionary<int, IPart> specification = myPlan.GetSpecification();
 
             int partToDoIndex = 0;
             int builderIndex = 0;
 
-        while (partToDoIndex < specification.Count)
+            while (partToDoIndex < specification.Count)
             {
                 Console.WriteLine($"\n{workers[builderIndex].Name} " +
                         $"{workers[builderIndex].Position}");
-                
-                if(workers[builderIndex].Energy >= 80)
-                {
-                    var isDone = workers[builderIndex].DoWork(specification, partToDoIndex);
 
-                    if (isDone) partToDoIndex++;
-                    workers[builderIndex].Energy += random.Next(5,15); 
-                }
-                else
-                {
-                    Console.WriteLine("I can't work now. I need day off");
-                    workers[builderIndex].Energy += random.Next(5, 15);
-                }
+                var isDone = workers[builderIndex].DoWork(specification, partToDoIndex);
 
+                if (isDone) partToDoIndex++;
 
                 builderIndex = (builderIndex + 1) % workers.Count;
 
-                
+
             }
 
             for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)

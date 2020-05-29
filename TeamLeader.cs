@@ -15,21 +15,44 @@ namespace BuildingHouse
 
         public bool DoWork(Dictionary<int, IPart> specification, int partIndex)
         {
-            Random random = new Random();
             float totalPercent = 0.0f;
             float partPercent = 100.0f / (float)specification.Count;
-
-            foreach (KeyValuePair<int, IPart> pair in specification)
+            if (this.Energy >= 80)
             {
-                if (pair.Value.IsDone)
+                foreach (KeyValuePair<int, IPart> pair in specification)
                 {
-                    Console.WriteLine($"{pair.Value.Name} completed");
-                    totalPercent += partPercent;
+                    if (pair.Value.IsDone)
+                    {
+                        Console.WriteLine($"{pair.Value.Name} completed");
+                        totalPercent += partPercent;
+                        
+                    }
                 }
+                Energy = GetEnergyLevel(true);
+                Console.WriteLine($"Construction completed: {totalPercent}%\n");
             }
-            Console.WriteLine($"Construction completed: {totalPercent}%\n");
-            this.Energy = random.Next(10, 20);
+            else
+            {
+                Console.WriteLine("I can't work now. I need day off");
+                this.Energy = GetEnergyLevel(false);
+
+            }
             return false;
         }
+
+        public int GetEnergyLevel(bool resultOfWork)
+        {
+            Random random = new Random();
+            if (resultOfWork)
+            {
+                this.Energy -= random.Next(10, 20);
+            }
+            else
+            {
+                this.Energy += random.Next(5, 15);
+            }
+            return Energy;
+        }
+
     }
 }

@@ -15,6 +15,6 @@ namespace BuildingHouse
         int Energy { get; set; }
 
         bool DoWork(Dictionary<int, IPart> specification, int partIndex);
-
+        int GetEnergyLevel(bool resultOfWork);
     }
 }
