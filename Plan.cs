@@ -46,12 +46,6 @@ namespace BuildingHouse
 
             }
 
-            //foreach (KeyValuePair<int, IPart> pair in specification)
-            //{
-            //    Console.WriteLine(pair);
-            //}
-
-
             return specification;
         }
 

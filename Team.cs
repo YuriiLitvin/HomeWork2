@@ -11,7 +11,8 @@ namespace BuildingHouse
     {
         public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
-        Random random = new Random();
+        readonly Random random = new Random();
+        
         public Team(int leaderCount, int builderCount) 
         {
             //LeaderCount = Convert.ToInt32(leaderCount);

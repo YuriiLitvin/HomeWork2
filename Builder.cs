@@ -35,7 +35,6 @@ namespace BuildingHouse
                 {
                     Console.WriteLine($"I can't do {part.Value.Name}" +
                         $" because {specification[partToDoIndex].Name} is not completed");
-                    
                 }
 
             }
