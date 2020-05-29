@@ -11,7 +11,7 @@ namespace BuildingHouse
     {
         public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
-        
+        Random random = new Random();
         public Team(int leaderCount, int builderCount) 
         {
             //LeaderCount = Convert.ToInt32(leaderCount);
@@ -30,7 +30,8 @@ namespace BuildingHouse
                     new TeamLeader()
                     {
                         Name = "Tim #" + leaderIndex,
-                        Position = "TeamLeader"
+                        Position = "TeamLeader",
+                        Energy = random.Next(80, 100)
                     });
             }
             return leaders;
@@ -45,7 +46,8 @@ namespace BuildingHouse
                     new Builder()
                     {
                         Name = "Worker #" + leaderIndex,
-                        Position = "Builder"
+                        Position = "Builder",
+                        Energy = random.Next(80, 100)
                     });
             }
             return builders;
@@ -61,12 +63,10 @@ namespace BuildingHouse
 
             int partToDoIndex = 0;
             int builderIndex = 0;
-            Random random = new Random();
-            workers[builderIndex].Energy = random.Next(80, 100);
 
-            while (partToDoIndex < specification.Count)
+        while (partToDoIndex < specification.Count)
             {
-                Console.WriteLine($"{workers[builderIndex].Name} " +
+                Console.WriteLine($"\n{workers[builderIndex].Name} " +
                         $"{workers[builderIndex].Position}");
                 
                 if(workers[builderIndex].Energy >= 80)
@@ -78,8 +78,6 @@ namespace BuildingHouse
                 }
                 else
                 {
-                    Console.WriteLine($"\n{workers[builderIndex].Name} " +
-                          $"{workers[builderIndex].Position}");
                     Console.WriteLine("I can't work now. I need day off");
                     workers[builderIndex].Energy += random.Next(5, 15);
                 }
@@ -92,7 +90,7 @@ namespace BuildingHouse
 
             for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
             {
-                Console.WriteLine($"{workers[leaderIndex].Name} " +
+                Console.WriteLine($"\n{workers[leaderIndex].Name} " +
                      $"{workers[leaderIndex].Position}");
                 workers[leaderIndex].DoWork(specification, partToDoIndex);
             }

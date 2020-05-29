@@ -11,7 +11,9 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
         public int Energy { get; set; }
-
+        
+        
+        
         public bool DoWork(Dictionary<int, IPart> specification, int partToDoIndex)
         {
             Random random = new Random();
@@ -39,5 +41,7 @@ namespace BuildingHouse
             }
             return false;
         }
+        
+
     }
 }

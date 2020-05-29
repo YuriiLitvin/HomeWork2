@@ -11,7 +11,7 @@ namespace BuildingHouse
     {
         public string Name { get; set; }
         public string Position { get; set; }
-        public int Energy { get; set; }
+        public int Energy { get; set; } = 90;
 
         public bool DoWork(Dictionary<int, IPart> specification, int partIndex)
         {
