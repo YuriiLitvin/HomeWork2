@@ -20,36 +20,17 @@ namespace BuildingHouse
             };
             return PartTypesWithIndexes;
         }
-       
-        public Dictionary<int,IPart> GetSpecification()
+
+        public Dictionary<int, IPart> GetSpecification()
         {
             List<IPart> constructionList = this.GetConstructionList();
 
-            Dictionary<int, IPart> checkList = new Dictionary<int, IPart>();
-            for (int partIndex = 0; partIndex < constructionList.Count; partIndex++)
-            {
-                checkList.Add(partIndex, constructionList[partIndex]);
-            }
-
-
-
-            Random rand = new Random();
-            Dictionary<int, IPart> specification = new Dictionary<int, IPart>();
-            while (specification.Count < checkList.Count)
-            {
-                int randomIndex = rand.Next(0, constructionList.Count);
-
-                if (!specification.ContainsKey(randomIndex))
-                {
-                    specification.Add(randomIndex, checkList[randomIndex]);
-                }
-
-            }
-
-            return specification;
+            Randomizer<IPart> randomizer = new Randomizer<IPart>();
+            
+            return randomizer.Get(constructionList);
+            
+            
         }
-
-
 
         public List<IPart> GetConstructionList()
         {

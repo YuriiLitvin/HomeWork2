@@ -54,42 +54,70 @@ namespace BuildingHouse
             return builders;
         }
 
-        public List<IWorker> GetWorkers() => GetLeaders().Concat(GetBuilders()).ToList();
-
+        public Dictionary<int,IWorker> GetWorkers()
+        {
+            Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
+            List<IWorker> workers = GetLeaders().Concat(GetBuilders()).ToList();
+            return randomizer.Get(workers);
+        }
+        
         public void GetToWork(Plan myPlan)
         {
-            List<IWorker> workers = this.GetWorkers();
+            Dictionary<int,IWorker> workers = this.GetWorkers();
 
             Dictionary<int, IPart> specification = myPlan.GetSpecification();
-
+            
             int partToDoIndex = 0;
-            int builderIndex = 0;
 
             while (partToDoIndex < specification.Count)
             {
-                Console.WriteLine($"\n{workers[builderIndex].Name} " +
-                        $"{workers[builderIndex].Position}");
-
-                bool isDone = workers[builderIndex].DoWork(specification, partToDoIndex);
-
-                if (isDone) partToDoIndex++;
-
-                builderIndex = (builderIndex + 1) % workers.Count;
-            }
-            while (true)
-            {
-                bool finish = false;
-
-                for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
+                foreach (KeyValuePair<int,IWorker> worker in workers)
                 {
+                    Console.WriteLine($"\n{worker.Value.Name} " +
+                        $"{worker.Value.Position}");
                     
-                    Console.WriteLine($"\n{workers[leaderIndex].Name} " +
-                         $"{workers[leaderIndex].Position}");
-                    finish = workers[leaderIndex].DoWork(specification, partToDoIndex);
-                    
-                }
-                if (finish) break;
+                    bool isDone = worker.Value.DoWork(specification, partToDoIndex);
+
+                    if (isDone) partToDoIndex++;
+                    if (partToDoIndex == specification.Count)
+                    {
+
+                        var teamLeader = workers.Values.Where(x => x.Position.Contains("TeamLeader"))
+                            .First();
+                        
+                        while (true) 
+                        {
+                            Console.WriteLine($"\n{teamLeader.Name} " +
+                            $"{teamLeader.Position}");
+
+                            var finishReport = teamLeader.DoWork(specification, partToDoIndex);
+                            if (finishReport) break;
+                        }
+                    }
+
+                }    
             }
+            
+            
+            
+            
+            
+           
+            
+            //while (true)
+            //{
+            //    bool finish = false;
+
+            //    for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
+            //    {
+                    
+            //        Console.WriteLine($"\n{workers[leaderIndex].Name} " +
+            //             $"{workers[leaderIndex].Position}");
+            //        finish = workers[leaderIndex].DoWork(specification, partToDoIndex);
+                    
+            //    }
+            //    if (finish) break;
+            //}
         }
     }
 }
