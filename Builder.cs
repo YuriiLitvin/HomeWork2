@@ -27,10 +27,10 @@ namespace BuildingHouse
                         this.Energy = GetEnergyLevel(part.Value.IsDone);
                         return part.Value.IsDone;
                     }
-                    else if (part.Value.IsDone)
+                    else if (part.Value.IsDone) 
                     {
-
                     }
+
                     else
                     {
                         Console.WriteLine($"I can't do {part.Value.Name}" +

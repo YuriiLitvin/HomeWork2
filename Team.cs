@@ -68,56 +68,43 @@ namespace BuildingHouse
             Dictionary<int, IPart> specification = myPlan.GetSpecification();
             
             int partToDoIndex = 0;
-
-            while (partToDoIndex < specification.Count)
+            
+            do
             {
-                foreach (KeyValuePair<int,IWorker> worker in workers)
+                foreach (KeyValuePair<int, IWorker> worker in workers)
                 {
                     Console.WriteLine($"\n{worker.Value.Name} " +
                         $"{worker.Value.Position}");
                     
                     bool isDone = worker.Value.DoWork(specification, partToDoIndex);
-
                     if (isDone) partToDoIndex++;
-                    if (partToDoIndex == specification.Count)
-                    {
 
-                        var teamLeader = workers.Values.Where(x => x.Position.Contains("TeamLeader"))
+                }
+
+            } while (partToDoIndex != specification.Count);
+
+            IWorker teamLeader = workers.Values.Where(x => x.Position.Contains("TeamLeader"))
                             .First();
-                        
-                        while (true) 
-                        {
-                            Console.WriteLine($"\n{teamLeader.Name} " +
-                            $"{teamLeader.Position}");
+            //TODO: substitute condition "true" with something else
+            while (true)
+            {
+                Console.WriteLine($"\n{teamLeader.Name} " +
+                $"{teamLeader.Position}");
 
-                            var finishReport = teamLeader.DoWork(specification, partToDoIndex);
-                            if (finishReport) break;
-                        }
-                    }
-
-                }    
+                bool finishReport = teamLeader.DoWork(specification, partToDoIndex);
+                if (finishReport) break;
             }
-            
-            
-            
-            
-            
-           
-            
-            //while (true)
-            //{
-            //    bool finish = false;
 
-            //    for (int leaderIndex = 0; leaderIndex < LeaderCount; leaderIndex++)
-            //    {
-                    
-            //        Console.WriteLine($"\n{workers[leaderIndex].Name} " +
-            //             $"{workers[leaderIndex].Position}");
-            //        finish = workers[leaderIndex].DoWork(specification, partToDoIndex);
-                    
-            //    }
-            //    if (finish) break;
-            //}
+
+
+
+
+
+
+
+            
+
+
         }
     }
 }
