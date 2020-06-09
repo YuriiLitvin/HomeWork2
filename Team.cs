@@ -58,7 +58,7 @@ namespace BuildingHouse
         {
             Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
             List<IWorker> workers = GetLeaders().Concat(GetBuilders()).ToList();
-            return randomizer.Get(workers);
+            return randomizer.GetUnsorted(workers);
         }
         
         public void GetToWork(Plan myPlan)
@@ -68,8 +68,8 @@ namespace BuildingHouse
             Dictionary<int, IPart> specification = myPlan.GetSpecification();
             
             int partToDoIndex = 0;
-            
-            do
+
+            for (; partToDoIndex < specification.Count;) 
             {
                 foreach (KeyValuePair<int, IWorker> worker in workers)
                 {
@@ -78,14 +78,14 @@ namespace BuildingHouse
                     
                     bool isDone = worker.Value.DoWork(specification, partToDoIndex);
                     if (isDone) partToDoIndex++;
-
+                    if (partToDoIndex == 11) break;
                 }
 
-            } while (partToDoIndex != specification.Count);
+            } 
 
             IWorker teamLeader = workers.Values.Where(x => x.Position.Contains("TeamLeader"))
                             .First();
-            //TODO: substitute condition "true" with something else
+            
             while (true)
             {
                 Console.WriteLine($"\n{teamLeader.Name} " +
@@ -94,16 +94,6 @@ namespace BuildingHouse
                 bool finishReport = teamLeader.DoWork(specification, partToDoIndex);
                 if (finishReport) break;
             }
-
-
-
-
-
-
-
-
-            
-
 
         }
     }

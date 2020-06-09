@@ -11,9 +11,9 @@ namespace BuildingHouse
         public string Name { get; set; }
         public string Position { get; set; }
         public int Energy { get; set; }
-        
-        
-        
+
+
+        //TODO: eliminate 3 pairs of {}
         public bool DoWork(Dictionary<int, IPart> specification, int partToDoIndex)
         {
             if (this.Energy >= 80)
@@ -45,6 +45,7 @@ namespace BuildingHouse
             }
             return false;
         }
+        //TODO:  Don't repeat youself
         public int GetEnergyLevel(bool resultOfWork)
         {
             Random random = new Random();
