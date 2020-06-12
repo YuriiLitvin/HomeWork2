@@ -76,7 +76,9 @@ namespace BuildingHouse
 
                     bool isDone = (worker.Value.Energy >= 80) ?
                         worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
-
+                    
+                    EnergySetter.SetEnergyLevel(isDone, worker.Value.Energy);
+                    
                     if (isDone) partToDoIndex++;
                     if (partToDoIndex == specification.Count)
                     {

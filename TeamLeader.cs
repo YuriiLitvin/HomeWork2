@@ -28,7 +28,6 @@ namespace BuildingHouse
             }
             Console.WriteLine($"Construction completed: {totalPercent}%\n");
 
-            this.Energy = SetEnergyLevel(true);
 
             return specification.All(pair => pair.Value.IsDone == true);
         }
@@ -36,23 +35,10 @@ namespace BuildingHouse
         public bool GetDayOff()
         {
             Console.WriteLine("I can't work now. I need day off");
-            this.Energy = SetEnergyLevel(false);
             return false;
         }
 
-        public int SetEnergyLevel(bool resultOfWork)
-        {
-            Random random = new Random();
-            if (resultOfWork)
-            {
-                this.Energy -= random.Next(10, 20);
-            }
-            else
-            {
-                this.Energy += random.Next(5, 15);
-            }
-            return Energy;
-        }
+       
 
     }
 }
