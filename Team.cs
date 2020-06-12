@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BuildingHouse
 {
@@ -11,6 +9,7 @@ namespace BuildingHouse
     {
         public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
+        
         readonly Random random = new Random();
 
         public Team(int leaderCount, int builderCount)
@@ -64,28 +63,37 @@ namespace BuildingHouse
         public void GetToWork(Plan myPlan)
         {
             Dictionary<int,IWorker> workers = this.GetWorkers();
-
             Dictionary<int, IPart> specification = myPlan.GetSpecification();
             
             int partToDoIndex = 0;
 
-            for (; partToDoIndex < specification.Count;) 
+            while (partToDoIndex < specification.Count) 
             {
                 foreach (KeyValuePair<int, IWorker> worker in workers)
                 {
                     Console.WriteLine($"\n{worker.Value.Name} " +
                         $"{worker.Value.Position}");
-                    
-                    bool isDone = worker.Value.DoWork(specification, partToDoIndex);
+
+                    bool isDone = (worker.Value.Energy >= 80) ?
+                        worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
+
                     if (isDone) partToDoIndex++;
-                    if (partToDoIndex == 11) break;
+                    if (partToDoIndex == specification.Count)
+                    {
+                        GetLastReport(specification, workers);
+                        break;
+                    }
+
                 }
-
-            } 
-
+            }       
+        }
+        
+        public void GetLastReport(Dictionary<int, IPart> specification, Dictionary<int, IWorker> workers)
+        {
             IWorker teamLeader = workers.Values.Where(x => x.Position.Contains("TeamLeader"))
-                            .First();
-            
+                                        .First();
+
+            int partToDoIndex = 0;
             while (true)
             {
                 Console.WriteLine($"\n{teamLeader.Name} " +
@@ -94,7 +102,8 @@ namespace BuildingHouse
                 bool finishReport = teamLeader.DoWork(specification, partToDoIndex);
                 if (finishReport) break;
             }
-
         }
+    
+    
     }
 }

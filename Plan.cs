@@ -28,8 +28,6 @@ namespace BuildingHouse
             Randomizer<IPart> randomizer = new Randomizer<IPart>();
             
             return randomizer.GetUnsorted(constructionList);
-            
-            
         }
 
         public List<IPart> GetConstructionList()
