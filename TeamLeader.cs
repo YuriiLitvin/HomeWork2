@@ -18,18 +18,19 @@ namespace BuildingHouse
             float totalPercent = 0.0f;
             float partPercent = 100.0f / (float)specification.Count;
 
-            foreach (KeyValuePair<int, IPart> pair in specification)
+
+            var doneParts = specification.Where(pair => pair.Value.IsDone == true)
+                                         .Select(pair => pair.Value.Name);
+            
+            foreach (var part in doneParts)
             {
-                if (pair.Value.IsDone)
-                {
-                    Console.WriteLine($"{pair.Value.Name} completed");
-                    totalPercent += partPercent;
-                }
+                Console.WriteLine($"{part} completed");
+                totalPercent += partPercent;
             }
+            
             Console.WriteLine($"Construction completed: {totalPercent}%\n");
-
-
-            return specification.All(pair => pair.Value.IsDone == true);
+            
+            return false;
         }
         
         public bool GetDayOff()
@@ -37,8 +38,5 @@ namespace BuildingHouse
             Console.WriteLine("I can't work now. I need day off");
             return false;
         }
-
-       
-
     }
 }

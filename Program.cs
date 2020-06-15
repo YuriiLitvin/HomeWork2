@@ -10,9 +10,10 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
-            Team myTeam = new Team(3,7);
+            TeamCreater personnel = new TeamCreater(3,7);
+            Team myTeam = new Team();            
             Plan plan = new Plan(); 
-            myTeam.GetToWork(plan);
+            myTeam.GetToWork(plan, personnel);
 
             Console.ReadKey();
         }
