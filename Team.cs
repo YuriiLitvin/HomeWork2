@@ -20,7 +20,7 @@ namespace BuildingHouse
             BuilderCount = builderCount;
         }
 
-        public List<IWorker> GetLeaders()
+        public List<IWorker> CreateLeaders()
         {
             List<IWorker> leaders = new List<IWorker>();
 
@@ -36,7 +36,7 @@ namespace BuildingHouse
             }
             return leaders;
         }
-        public List<IWorker> GetBuilders()
+        public List<IWorker> CreateBuilders()
         {
             List<IWorker> builders = new List<IWorker>();
 
@@ -53,16 +53,16 @@ namespace BuildingHouse
             return builders;
         }
 
-        public Dictionary<int,IWorker> GetWorkers()
+        public Dictionary<int,IWorker> CreateTeam()
         {
             Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
-            List<IWorker> workers = GetLeaders().Concat(GetBuilders()).ToList();
+            List<IWorker> workers = CreateLeaders().Concat(CreateBuilders()).ToList();
             return randomizer.GetUnsorted(workers);
         }
         
         public void GetToWork(Plan myPlan)
         {
-            Dictionary<int,IWorker> workers = this.GetWorkers();
+            Dictionary<int,IWorker> workers = this.CreateTeam();
             Dictionary<int, IPart> specification = myPlan.GetSpecification();
             
             int partToDoIndex = 0;
@@ -77,7 +77,7 @@ namespace BuildingHouse
                     bool isDone = (worker.Value.Energy >= 80) ?
                         worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
                     
-                    EnergySetter.SetEnergyLevel(isDone, worker.Value.Energy);
+                    worker.Value.Energy = EnergySetter.SetEnergyLevel(isDone, worker.Value.Energy);
                     
                     if (isDone) partToDoIndex++;
                     if (partToDoIndex == specification.Count)
