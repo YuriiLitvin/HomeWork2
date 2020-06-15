@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace BuildingHouse
 {
+    // from external perspective you use this class to only call CreateTeam()
+    // make a "Team" property, set it within constructor
+    // replace external calls to CreateTeam() with property usage
     class TeamCreater
     {
         public int LeaderCount { get; set; }
