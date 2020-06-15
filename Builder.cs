@@ -25,7 +25,6 @@ namespace BuildingHouse
                 else if (part.Value.IsDone)
                 {
                 }
-
                 else
                 {
                     Console.WriteLine($"I can't do {part.Value.Name}" +

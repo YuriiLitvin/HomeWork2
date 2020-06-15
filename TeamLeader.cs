@@ -19,10 +19,10 @@ namespace BuildingHouse
             float partPercent = 100.0f / (float)specification.Count;
 
 
-            var doneParts = specification.Where(pair => pair.Value.IsDone == true)
+            var competedParts = specification.Where(pair => pair.Value.IsDone == true)
                                          .Select(pair => pair.Value.Name);
             
-            foreach (var part in doneParts)
+            foreach (var part in competedParts)
             {
                 Console.WriteLine($"{part} completed");
                 totalPercent += partPercent;
