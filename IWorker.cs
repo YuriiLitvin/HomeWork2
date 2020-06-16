@@ -15,6 +15,7 @@ namespace BuildingHouse
         int Energy { get; set; }
 
         bool DoWork(Dictionary<int, IPart> specification, int partIndex);
+        // it should be a void
         bool GetDayOff();
     }
 }

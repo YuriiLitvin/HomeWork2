@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
+    // make it static
     public class Randomizer<T>
     {
         public Dictionary<int,T> GetUnsorted(List<T> list)

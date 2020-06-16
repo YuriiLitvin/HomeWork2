@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
+    // you create plan just to have external call to ".GetSpecification"
+    // create a Specification field and fill it within constructor once.
     class Plan
     {
-        public Dictionary<Type, int> GetHousePartTypesWithIndexes()
+        private Dictionary<Type, int> GetHousePartTypesWithIndexes()
         {
             Dictionary<Type, int> PartTypesWithIndexes = new Dictionary<Type, int>
             {
@@ -21,6 +23,8 @@ namespace BuildingHouse
             return PartTypesWithIndexes;
         }
 
+        // return List<IPart> here; List already has index!
+        // randomize another way e.g. newList[0] = oldList[random];
         public Dictionary<int, IPart> GetSpecification()
         {
             List<IPart> constructionList = this.GetConstructionList();
@@ -30,7 +34,7 @@ namespace BuildingHouse
             return randomizer.GetUnsorted(constructionList);
         }
 
-        public List<IPart> GetConstructionList()
+        private List<IPart> GetConstructionList()
         {
             Plan myPlan = new Plan();
 
@@ -53,7 +57,7 @@ namespace BuildingHouse
 
         }
 
-        public List<IPart> GetParts(Type partType, int partCount)
+        private List<IPart> GetParts(Type partType, int partCount)
         {
             List<IPart> parts = new List<IPart>();
 

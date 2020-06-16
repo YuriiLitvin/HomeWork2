@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace BuildingHouse
 {
+    // team is nothing without personnel, and it should be inner property
+    // this property could be set in the constructor and used internally
+    // if you want to use TeamCreator -- do it, but here internally
     class Team
     {
         
