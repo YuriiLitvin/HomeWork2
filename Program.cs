@@ -10,7 +10,7 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
-            TeamCreater personnel = new TeamCreater(3,7);
+            TeamCreater personnel = new TeamCreater(3,4);
             Team myTeam = new Team();            
             Plan plan = new Plan(); 
             myTeam.GetToWork(plan, personnel);
