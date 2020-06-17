@@ -11,24 +11,24 @@ namespace BuildingHouse
     class Team
     {
         
-        public void GetToWork(Plan myPlan, TeamCreater personnel)
+        public void GetConstructionDone(Plan myPlan, TeamCreator personnel)
         {
-            Dictionary<int,IWorker> workers = personnel.CreateTeam();
-            Dictionary<int, IPart> specification = myPlan.GetSpecification();
+            List<IWorker> workers = personnel.CreateTeam();
+            List<IPart> specification = myPlan.GetSpecification();
             
-            int partToDoIndex = 0;
             int minEnergyLevel = 80;
+            
             while (partToDoIndex < specification.Count) 
             {
-                foreach (KeyValuePair<int, IWorker> worker in workers)
+                foreach (IWorker worker in workers)
                 {
-                    Console.WriteLine($"\n{worker.Value.Name} " +
-                      $"{worker.Value.Position}");
+                    Console.WriteLine($"\n{worker.Name} " +
+                      $"{worker.Position}");
+                    bool isDone = worker.GetToWork(specification);
+                    //bool isDone = (worker.Energy >= minEnergyLevel) ?
+                    //    worker.DoWork(specification) : worker.GetDayOff();
                     
-                    bool isDone = (worker.Value.Energy >= minEnergyLevel) ?
-                        worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
-                    
-                    worker.Value.Energy = EnergySetter.SetEnergyLevel(isDone, worker.Value.Energy);
+                    //worker.Energy = EnergySetter.SetEnergyLevel(isDone, worker.Energy);
                     
                     if (isDone) partToDoIndex++;
                 }

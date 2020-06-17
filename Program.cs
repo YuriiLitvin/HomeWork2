@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,13 +11,13 @@ namespace BuildingHouse
     {
         static void Main(string[] args)
         {
-            TeamCreater personnel = new TeamCreater(3,4);
+            TeamCreator personnel = new TeamCreator(3,4);
             Team myTeam = new Team();            
             Plan plan = new Plan(); 
 
             // if team will own personnel, and house will own plan
             // this will look like myTeam.GetToWork(house);
-            myTeam.GetToWork(plan, personnel);
+            myTeam.GetConstructionDone(plan, personnel);
 
             Console.ReadKey();
         }

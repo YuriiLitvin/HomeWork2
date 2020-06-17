@@ -1,36 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BuildingHouse
 {
-    // make it static
-    public class Randomizer<T>
+    //DONE: make it static
+    // DONE: randomize another way e.g. newList[0] = oldList[random];
+    public static class Randomizer<T>
     {
-        public Dictionary<int,T> GetUnsorted(List<T> list)
+        public static List<T> GetRandomOrderList(List<T> list)
         {
             Random rand = new Random();
-            
-            Dictionary<int, T> ordered = new Dictionary<int, T>();
-            for (int indexT = 0; indexT < list.Count; indexT++)
-            {
-                ordered.Add(indexT, list[indexT]);
-            }
 
-            Dictionary<int, T> disordered = new Dictionary<int, T>();
+            List<T> disorderedList = new List<T>();
             
-            while (disordered.Count < ordered.Count)
+            for(int index = 0; index < list.Count;)
             {
                 int randomIndex = rand.Next(0, list.Count);
-
-                if (!disordered.ContainsKey(randomIndex))
+                if (!disorderedList.Contains(list[randomIndex]))
                 {
-                    disordered.Add(randomIndex, ordered[randomIndex]);
+                    disorderedList[index] = list[randomIndex];
+                    index++;
                 }
             }
-            return disordered;
+            return disorderedList;
         }
     }
 }

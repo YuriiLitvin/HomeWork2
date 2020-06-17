@@ -8,14 +8,12 @@ namespace BuildingHouse
     // from external perspective you use this class to only call CreateTeam()
     // make a "Team" property, set it within constructor
     // replace external calls to CreateTeam() with property usage
-    class TeamCreater
+    class TeamCreator
     {
         public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
 
-        readonly Random random = new Random();
-
-        public TeamCreater(int leaderCount, int builderCount)
+        public TeamCreator(int leaderCount, int builderCount)
         {
             //LeaderCount = Convert.ToInt32(leaderCount);
             //BuilderCount = Convert.ToInt32(builderCount);
@@ -34,7 +32,6 @@ namespace BuildingHouse
                     {
                         Name = "Tim #" + leaderIndex,
                         Position = "TeamLeader",
-                        Energy = random.Next(80, 100)
                     });
             }
             return leaders;
@@ -50,17 +47,16 @@ namespace BuildingHouse
                     {
                         Name = "Worker #" + leaderIndex,
                         Position = "Builder",
-                        Energy = random.Next(80, 100)
                     });
             }
             return builders;
         }
 
-        public Dictionary<int, IWorker> CreateTeam()
+        public List<IWorker> CreateTeam()
         {
-            Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
             List<IWorker> workers = CreateLeaders().Concat(CreateBuilders()).ToList();
-            return randomizer.GetUnsorted(workers);
+            
+            return Randomizer<IWorker>.GetRandomOrderList(workers);
         }
 
 
