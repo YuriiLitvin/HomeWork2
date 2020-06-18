@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace BuildingHouse
 {
     // make it static
-    public class Randomizer<T>
+    public static class Randomizer<T>
     {
-        public Dictionary<int,T> GetUnsorted(List<T> list)
+        public static Dictionary<int,T> GetUnsorted(List<T> list)
         {
             Random rand = new Random();
             

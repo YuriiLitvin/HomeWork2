@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace BuildingHouse
 {
-    class Builder : IWorker
+    class Builder : Worker
     {
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public int Energy { get; set; }
+        //public string Name { get; set; }
+        //public string Position { get; set; }
+        //public int Energy { get; set; }
 
 
 
@@ -15,7 +15,7 @@ namespace BuildingHouse
         // is partToDoIndex is index to start with? or is it unnecessary at all?
         // in case its index -- use specification.Skip(index)
         // otherwise -- remove
-        public bool DoWork(Dictionary<int, IPart> specification, int partToDoIndex)
+        public override bool DoWork(Dictionary<int, IPart> specification, int partToDoIndex)
         {
             // in case you don`t really need Key here (see comment above)
             // consider
@@ -42,14 +42,14 @@ namespace BuildingHouse
                         $" because {specification[partToDoIndex].Name} is not completed");
                 }
             }
-            
+
             return false;
         }
-        public bool GetDayOff()
-        {
-            Console.WriteLine("I can't work now. I need day off");
-            return false;
-        }
+        //public bool GetDayOff()
+        //{
+        //    Console.WriteLine("I can't work now. I need day off");
+        //    return false;
+        //}
 
     }
 }

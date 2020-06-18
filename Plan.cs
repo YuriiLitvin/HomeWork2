@@ -29,9 +29,7 @@ namespace BuildingHouse
         {
             List<IPart> constructionList = this.GetConstructionList();
 
-            Randomizer<IPart> randomizer = new Randomizer<IPart>();
-            
-            return randomizer.GetUnsorted(constructionList);
+            return Randomizer<IPart>.GetUnsorted(constructionList);
         }
 
         private List<IPart> GetConstructionList()

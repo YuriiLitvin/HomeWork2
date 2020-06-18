@@ -34,7 +34,7 @@ namespace BuildingHouse
                     {
                         Name = "Tim #" + leaderIndex,
                         Position = "TeamLeader",
-                        Energy = random.Next(80, 100)
+                        //Energy = random.Next(80, 100)
                     });
             }
             return leaders;
@@ -50,7 +50,7 @@ namespace BuildingHouse
                     {
                         Name = "Worker #" + leaderIndex,
                         Position = "Builder",
-                        Energy = random.Next(80, 100)
+                        //Energy = random.Next(80, 100)
                     });
             }
             return builders;
@@ -58,9 +58,9 @@ namespace BuildingHouse
 
         public Dictionary<int, IWorker> CreateTeam()
         {
-            Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
+            //Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
             List<IWorker> workers = CreateLeaders().Concat(CreateBuilders()).ToList();
-            return randomizer.GetUnsorted(workers);
+            return Randomizer<IWorker>.GetUnsorted(workers);
         }
 
 

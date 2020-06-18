@@ -49,6 +49,7 @@
     <Compile Include="HouseParts\Roof.cs" />
     <Compile Include="HouseParts\Door.cs" />
     <Compile Include="House.cs" />
+    <Compile Include="IEnergyManagable.cs" />
     <Compile Include="IPart.cs" />
     <Compile Include="IWorker.cs" />
     <Compile Include="Plan.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="TeamLeader.cs" />
     <Compile Include="HouseParts\Wall.cs" />
     <Compile Include="HouseParts\Window.cs" />
+    <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

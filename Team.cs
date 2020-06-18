@@ -28,8 +28,9 @@ namespace BuildingHouse
                     bool isDone = (worker.Value.Energy >= minEnergyLevel) ?
                         worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
                     
-                    worker.Value.Energy = EnergyManager.SetEnergyLevel(isDone, worker.Value.Energy);
-                    
+
+                    //worker.Value.Energy = EnergyManager.SetEnergyLevel(isDone, worker.Value.Energy);
+
                     if (isDone) partToDoIndex++;
                 }
             }       
