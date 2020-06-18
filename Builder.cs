@@ -24,7 +24,7 @@ namespace BuildingHouse
                 // use && instead of & (its lazy and, there is lazy or (||) as well
 
                 // you refer part.Value too much, please do:
-                //var part = pair.Value;
+                // var part = pair.Value;
                 if (part.Key == partToDoIndex & !part.Value.IsDone)
                 {
                     Console.WriteLine($"**************I completed {part.Value.Name}\n");
