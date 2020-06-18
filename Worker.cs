@@ -10,10 +10,8 @@ namespace BuildingHouse
         public string Position { get; set; }
         public int Energy { get ; set; }
 
-        public bool GetToWork(List<IPart> list)
-        {
-           
-        }
+        public abstract bool GetToWork(List<IPart> list);
+        
         
         // it should be a void
         public bool GetDayOff()
