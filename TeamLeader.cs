@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
-    class TeamLeader : Worker
+    class TeamLeader : IWorker
     {
-        //public string Name { get; set; }
-        //public string Position { get; set; }
-        
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public int Energy { get; set; } 
 
-        public bool DoWork(List<IPart> specification)
+        public bool DoWork(Dictionary<int, IPart> specification, int partIndex)
         {
-            // DONE: or var x = 0.0f or float x = 0, not both!
-            float totalPercent = 0;
-            // DONE: float / int = float already, you don`t need to cast
-            float partPercent = 100 / specification.Count;
+            // or var x = 0.0f or float x = 0, not both!
+            float totalPercent = 0.0f;
+            // float / int = float already, you don`t need to cast
+            float partPercent = 100.0f / (float)specification.Count;
 
             // try to use LINQ .Aggregate function to count percentage
             // it will be hard, but awesome!
-            var competedParts = specification.Where(_ => _.IsDone == true)
-                                         .Select(_ => _.Name);
+            var competedParts = specification.Where(pair => pair.Value.IsDone == true)
+                                         .Select(pair => pair.Value.Name);
             
             foreach (var part in competedParts)
             {

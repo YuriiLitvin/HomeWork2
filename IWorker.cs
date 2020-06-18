@@ -9,10 +9,13 @@ namespace BuildingHouse
     interface IWorker
     {
         string Name { get; set; }
+
         string Position { get; set; }
-       
-        bool GetToWork(List<IPart> list);
         
-        
+        int Energy { get; set; }
+
+        bool DoWork(Dictionary<int, IPart> specification, int partIndex);
+        // it should be a void
+        bool GetDayOff();
     }
 }

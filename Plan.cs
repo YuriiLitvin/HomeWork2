@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
-    //TODO: you create plan just to have external call to ".GetSpecification"
-    //TODO: create a Specification field and fill it within constructor once.
+    // you create plan just to have external call to ".GetSpecification"
+    // create a Specification field and fill it within constructor once.
     class Plan
     {
-        //public List<IPart> Specification;
-        //public Plan(List<IPart> specification)
-        //{
-        //    Specification = specification;
-        //}
-
         private Dictionary<Type, int> GetHousePartTypesWithIndexes()
         {
             Dictionary<Type, int> PartTypesWithIndexes = new Dictionary<Type, int>
@@ -29,19 +23,22 @@ namespace BuildingHouse
             return PartTypesWithIndexes;
         }
 
-        // DONE: return List<IPart> here; List already has index!
-        
-        public List<IPart> GetSpecification()
+        // return List<IPart> here; List already has index!
+        // randomize another way e.g. newList[0] = oldList[random];
+        public Dictionary<int, IPart> GetSpecification()
         {
             List<IPart> constructionList = this.GetConstructionList();
+
+            Randomizer<IPart> randomizer = new Randomizer<IPart>();
             
-            return Randomizer<IPart>.GetRandomOrderList(constructionList);
+            return randomizer.GetUnsorted(constructionList);
         }
 
         private List<IPart> GetConstructionList()
         {
+            Plan myPlan = new Plan();
 
-            var housePartTypes = this.GetHousePartTypesWithIndexes()
+            var housePartTypes = myPlan.GetHousePartTypesWithIndexes()
                 .OrderBy(_ => _.Value)
                 .Select(_ => _.Key);
 
@@ -56,6 +53,8 @@ namespace BuildingHouse
                 }
             }
             return constructionList;
+            
+
         }
 
         private List<IPart> GetParts(Type partType, int partCount)
