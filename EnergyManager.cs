@@ -3,7 +3,7 @@
 
 namespace BuildingHouse
 {
-    public static class EnergySetter
+    public static class EnergyManager
     {
         public static int SetEnergyLevel(bool isDone, int Energy)
         {
