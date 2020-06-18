@@ -13,21 +13,23 @@ namespace BuildingHouse
         
         public void GetToWork(Plan myPlan, TeamCreater personnel)
         {
-            Dictionary<int,IWorker> workers = personnel.CreateTeam();
+            Dictionary<int,Worker> workers = personnel.CreateTeam();
             Dictionary<int, IPart> specification = myPlan.GetSpecification();
             
             int partToDoIndex = 0;
-            int minEnergyLevel = 80;
+            //int minEnergyLevel = 80;
             while (partToDoIndex < specification.Count) 
             {
-                foreach (KeyValuePair<int, IWorker> worker in workers)
+                foreach (KeyValuePair<int, Worker> worker in workers)
                 {
                     Console.WriteLine($"\n{worker.Value.Name} " +
                       $"{worker.Value.Position}");
-                    
-                    bool isDone = (worker.Value.Energy >= minEnergyLevel) ?
-                        worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
-                    
+
+                    bool isDone = worker.Value.TryDoWork(specification, partToDoIndex);
+
+
+                    //bool isDone = (worker.Value.Energy >= minEnergyLevel) ?
+                    //    worker.Value.DoWork(specification, partToDoIndex) : worker.Value.GetDayOff();
 
                     //worker.Value.Energy = EnergyManager.SetEnergyLevel(isDone, worker.Value.Energy);
 

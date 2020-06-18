@@ -11,11 +11,21 @@ namespace BuildingHouse
 
         public abstract bool DoWork(Dictionary<int, IPart> specification, int partIndex);
 
-        public bool GetDayOff()
+        public void GetDayOff() => Console.WriteLine("I can't work now. I need day off");
+
+        public bool TryDoWork(Dictionary<int, IPart> specification, int partIndex)
         {
-            Console.WriteLine("I can't work now. I need day off");
+            if(EnergyManager.CanDoWork())
+            {
+                EnergyManager.Decrease();
+                return this.DoWork(specification, partIndex);
+            }
+            else
+            {
+                this.GetDayOff();
+                EnergyManager.Increase();
+            }
             return false;
         }
-
     }
 }

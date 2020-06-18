@@ -18,11 +18,8 @@ namespace BuildingHouse
 
         public bool CanDoWork()
         {
-            if (Energy >= minEnergyLevel)
-                return true;
-            return false;
+           return Energy >= minEnergyLevel;
         }
-
         public void GetInitialEnergyLevel() => Energy = random.Next(minEnergyLevel, maxEnergyLevel);
         public void Increase() => Energy += random.Next(increaseMin, increaseMax);
         public void Decrease() => Energy -= random.Next(decreaseMin, decreaseMax);

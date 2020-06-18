@@ -25,7 +25,7 @@ namespace BuildingHouse
 
                 // you refer part.Value too much, please do:
                 // var part = pair.Value;
-                if (part.Key == partToDoIndex & !part.Value.IsDone)
+                if (part.Key == partToDoIndex && !part.Value.IsDone)
                 {
                     Console.WriteLine($"**************I completed {part.Value.Name}\n");
                     part.Value.IsDone = true;
@@ -37,8 +37,7 @@ namespace BuildingHouse
                 }
                 else
                 {
-                    Console.WriteLine(
-                        $"I can't do {part.Value.Name}" +
+                    Console.WriteLine($"I can't do {part.Value.Name}" +
                         $" because {specification[partToDoIndex].Name} is not completed");
                 }
             }
