@@ -13,8 +13,6 @@ namespace BuildingHouse
         public int LeaderCount { get; set; }
         public int BuilderCount { get; set; }
 
-        //readonly Random random = new Random();
-
         public TeamCreater(int leaderCount, int builderCount)
         {
             //LeaderCount = Convert.ToInt32(leaderCount);
@@ -34,7 +32,6 @@ namespace BuildingHouse
                     {
                         Name = "Tim #" + leaderIndex,
                         Position = "TeamLeader",
-                        
                     });
             }
             return leaders;
@@ -57,7 +54,6 @@ namespace BuildingHouse
 
         public Dictionary<int, Worker> CreateTeam()
         {
-            //Randomizer<IWorker> randomizer = new Randomizer<IWorker>();
             List<Worker> workers = CreateLeaders().Concat(CreateBuilders()).ToList();
             return Randomizer<Worker>.GetUnsorted(workers);
         }

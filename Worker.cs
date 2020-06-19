@@ -7,22 +7,28 @@ namespace BuildingHouse
     {
         public string Name { get; set; }
         public string Position { get; set; }
-        public EnergyManager EnergyManager { get; set; }
+        public EnergyManager EnergyManager { get; set; } = new EnergyManager();
 
         public abstract bool DoWork(Dictionary<int, IPart> specification, int partIndex);
 
         public void GetDayOff() => Console.WriteLine("I can't work now. I need day off");
 
+        public void GetNameAndPosition() => Console.WriteLine($"\n{Name} " +
+                      $"{Position}");
+        
         public bool TryDoWork(Dictionary<int, IPart> specification, int partIndex)
         {
+
+            GetNameAndPosition();
+            
             if(EnergyManager.CanDoWork())
             {
                 EnergyManager.Decrease();
-                return this.DoWork(specification, partIndex);
+                return DoWork(specification, partIndex);
             }
             else
             {
-                this.GetDayOff();
+                GetDayOff();
                 EnergyManager.Increase();
             }
             return false;

@@ -16,6 +16,11 @@ namespace BuildingHouse
 
         private static readonly Random random = new Random();
 
+        public EnergyManager()
+        {
+            this.GetInitialEnergyLevel();
+        }
+
         public bool CanDoWork()
         {
            return Energy >= minEnergyLevel;
@@ -26,24 +31,6 @@ namespace BuildingHouse
 
 
 
-        //public int SetEnergyLevel(bool isDone, int Energy)
-        //{
-        //    // all randoms should be static;
-        //    // in case you need to use random.Next(x, y) many times
-        //    // make a wrapper in randomizer class
-
-        //    if (isDone)
-        //    {
-        //        // 10 is increaseMin, 20 is increaseMax and they are constant!
-        //        Energy -= random.Next(decreaseMin, decreaseMax);
-        //    }
-        //    else
-        //    {
-        //        // same here
-        //        Energy += random.Next(increaseMin, increaseMax);
-        //    }
-        //    return Energy;
-        //}
 
     }
 }

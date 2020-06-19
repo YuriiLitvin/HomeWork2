@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildingHouse
 {
-    // make it static
     public static class Randomizer<T>
     {
         public static Dictionary<int,T> GetUnsorted(List<T> list)
