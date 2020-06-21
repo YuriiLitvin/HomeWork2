@@ -10,16 +10,17 @@ namespace BuildingHouse
     // replace external calls to CreateTeam() with property usage
     class TeamCreater
     {
-        public int LeaderCount { get; set; }
+        public Dictionary<int, Worker> Team { get; set; }
 
-        public int BuilderCount { get; set; }
+        private int LeaderCount { get; set; }
 
+        private int BuilderCount { get; set; }
 
         public TeamCreater(int leaderCount, int builderCount)
         {
             this.LeaderCount = leaderCount;
             this.BuilderCount = builderCount;
-            this.CreateTeam();
+            this.Team = this.CreateTeam();
         }
 
         public List<Worker> CreateLeaders()

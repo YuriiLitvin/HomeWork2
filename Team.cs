@@ -23,7 +23,7 @@
 
         public void GetToWork(Dictionary<int, IPart> specification) //, TeamCreater personnel)
         {
-            //var workers = personnel.CreateTeam();
+            var workers = this.Personnel.Team;
 
             var partIndex = 0;
             while (partIndex < specification.Count)
