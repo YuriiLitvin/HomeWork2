@@ -11,14 +11,15 @@ namespace BuildingHouse
     class TeamCreater
     {
         public int LeaderCount { get; set; }
+
         public int BuilderCount { get; set; }
+
 
         public TeamCreater(int leaderCount, int builderCount)
         {
-            //LeaderCount = Convert.ToInt32(leaderCount);
-            //BuilderCount = Convert.ToInt32(builderCount);
-            LeaderCount = leaderCount;
-            BuilderCount = builderCount;
+            this.LeaderCount = leaderCount;
+            this.BuilderCount = builderCount;
+            this.CreateTeam();
         }
 
         public List<Worker> CreateLeaders()
@@ -36,6 +37,7 @@ namespace BuildingHouse
             }
             return leaders;
         }
+
         public List<Worker> CreateBuilders()
         {
             List<Worker> builders = new List<Worker>();

@@ -8,12 +8,12 @@ namespace BuildingHouse
     {
         public override bool DoWork(Dictionary<int, IPart> specification, int partIndex)
         {
-            float totalPercent = 0;
-            float partPercent = 100.0f / specification.Count;
+            var totalPercent = 0.0f;
+            var partPercent = 100.0f / specification.Count;
 
             // try to use LINQ .Aggregate function to count percentage
             // it will be hard, but awesome!
-            var completedParts = specification.Where(pair => pair.Value.IsDone == true)
+            var completedParts = specification.Where(pair => pair.Value.IsDone)
                                          .Select(pair => pair.Value.Name);
 
             foreach (var part in completedParts)
@@ -23,8 +23,9 @@ namespace BuildingHouse
             }
 
             Console.WriteLine($"Construction completed: {totalPercent}%\n");
+
             // make from everything above method "ReportProgress"
-            return false;
+            return specification.All(pair => pair.Value.IsDone);
         }
     }
 }

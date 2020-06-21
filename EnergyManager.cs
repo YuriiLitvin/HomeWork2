@@ -5,16 +5,16 @@ namespace BuildingHouse
 {
     public class EnergyManager
     {
-        private int Energy;
+        private const int MinEnergyLevel = 80;
+        private const int MaxEnergyLevel = 100;
+        private const int IncreaseMin = 5;
+        private const int IncreaseMax = 15;
+        private const int DecreaseMin = 10;
+        private const int DecreaseMax = 20;
 
-        private const int minEnergyLevel = 80;
-        private const int maxEnergyLevel = 100;
-        private const int increaseMin = 5;
-        private const int increaseMax = 15;
-        private const int decreaseMin = 10;
-        private const int decreaseMax = 20;
+        private static readonly Random Random = new Random();
 
-        private static readonly Random random = new Random();
+        private int energy;
 
         public EnergyManager()
         {
@@ -23,14 +23,13 @@ namespace BuildingHouse
 
         public bool CanDoWork()
         {
-           return Energy >= minEnergyLevel;
+           return this.energy >= MinEnergyLevel;
         }
-        public void GetInitialEnergyLevel() => Energy = random.Next(minEnergyLevel, maxEnergyLevel);
-        public void Increase() => Energy += random.Next(increaseMin, increaseMax);
-        public void Decrease() => Energy -= random.Next(decreaseMin, decreaseMax);
 
+        public void GetInitialEnergyLevel() => this.energy = Random.Next(MinEnergyLevel, MaxEnergyLevel);
 
+        public void Increase() => this.energy += Random.Next(IncreaseMin, IncreaseMax);
 
-
+        public void Decrease() => this.energy -= Random.Next(DecreaseMin, DecreaseMax);
     }
 }
