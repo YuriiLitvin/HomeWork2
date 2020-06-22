@@ -9,18 +9,18 @@ namespace BuildingHouse
     {
         public Dictionary<int, Worker> Team { get; set; }
 
-        private int LeaderCount { get; set; }
+        private readonly int LeaderCount;
 
-        private int BuilderCount { get; set; }
+        private readonly int BuilderCount;
 
         public TeamCreater()
         {
-            this.LeaderCount = this.GetWorkerCount("TeamLeader");
-            this.BuilderCount = this.GetWorkerCount("Builder");
+            this.LeaderCount = this.GetWorkerCount(nameof(TeamLeader));
+            this.BuilderCount = this.GetWorkerCount(nameof(Builder));
             this.Team = this.CreateTeam();
         }
 
-        public List<Worker> CreateLeaders()
+        private List<Worker> CreateLeaders()
         {
             List<Worker> leaders = new List<Worker>();
 
@@ -36,7 +36,7 @@ namespace BuildingHouse
             return leaders;
         }
 
-        public List<Worker> CreateBuilders()
+        private List<Worker> CreateBuilders()
         {
             List<Worker> builders = new List<Worker>();
 
@@ -52,7 +52,7 @@ namespace BuildingHouse
             return builders;
         }
 
-        public Dictionary<int, Worker> CreateTeam()
+        private Dictionary<int, Worker> CreateTeam()
         {
             List<Worker> workers = CreateLeaders().Concat(CreateBuilders()).ToList();
             return Randomizer<Worker>.GetUnsorted(workers);
