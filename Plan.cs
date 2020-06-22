@@ -4,9 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    // you create plan just to have external call to ".GetSpecification"
-    // create a Specification field and fill it within constructor one.
-
     public class Plan
     {
         public Dictionary<int, IPart> Specification { get; }

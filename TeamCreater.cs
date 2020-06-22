@@ -5,9 +5,6 @@ using System.Linq;
 
 namespace BuildingHouse
 {
-    // from external perspective you use this class to only call CreateTeam()
-    // make a "Team" property, set it within constructor
-    // replace external calls to CreateTeam() with property usage
     class TeamCreater
     {
         public Dictionary<int, Worker> Team { get; set; }
@@ -16,10 +13,10 @@ namespace BuildingHouse
 
         private int BuilderCount { get; set; }
 
-        public TeamCreater(int leaderCount, int builderCount)
+        public TeamCreater()
         {
-            this.LeaderCount = leaderCount;
-            this.BuilderCount = builderCount;
+            this.LeaderCount = this.GetWorkerCount("TeamLeader");
+            this.BuilderCount = this.GetWorkerCount("Builder");
             this.Team = this.CreateTeam();
         }
 
@@ -61,6 +58,10 @@ namespace BuildingHouse
             return Randomizer<Worker>.GetUnsorted(workers);
         }
 
-
+        private int GetWorkerCount(string workerPosition)
+        {
+            Console.WriteLine($"Please enter a number of {workerPosition}s");
+            return Convert.ToInt32(Console.ReadLine());
+        }
     }
 }

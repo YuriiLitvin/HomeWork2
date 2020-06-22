@@ -4,24 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    // team is nothing without personnel, and it should be inner property
-    // this property could be set in the constructor and used internally
-    // if you want to use TeamCreator -- do it, but here internally
     class Team
     {
-        public static int LeaderCount { get; set; }
+        public TeamCreater Personnel { get; set; } = new TeamCreater();
 
-        public static int BuilderCount { get; set; }
-
-        public TeamCreater Personnel { get; set; } = new TeamCreater(LeaderCount, BuilderCount);
-
-        public Team(int leaderCount, int builderCount)
-        {
-            LeaderCount = leaderCount;
-            BuilderCount = builderCount;
-        }
-
-        public void GetToWork(Dictionary<int, IPart> specification) //, TeamCreater personnel)
+        public void GetToWork(Dictionary<int, IPart> specification) 
         {
             var workers = this.Personnel.Team;
 
