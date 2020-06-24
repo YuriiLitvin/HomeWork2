@@ -11,7 +11,8 @@ namespace BuildingHouse
         private const int IncreaseMax = 15;
         private const int DecreaseMin = 10;
         private const int DecreaseMax = 20;
-
+        
+        //TODO: do something with Random
         private static readonly Random Random = new Random();
 
         private int energy;

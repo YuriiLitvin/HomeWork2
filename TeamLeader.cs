@@ -6,7 +6,7 @@ namespace BuildingHouse
 {
     class TeamLeader : Worker
     {
-        public override bool DoWork(Dictionary<int, IPart> specification, int partIndex)
+        public override bool DoWork(Dictionary<int, IPart> specification)
         {
             var totalPercent = 0.0f;
             var partPercent = 100.0f / specification.Count;

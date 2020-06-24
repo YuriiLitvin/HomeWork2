@@ -1,38 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BuildingHouse
 {
     class Builder : Worker
     {
-        // this method does ANY part, not the one located at partIndex
-        // is partIndex is index to start with? or is it unnecessary at all?
-        // in case its index -- use specification.Skip(index)
-        // otherwise -- remove
-        public override bool DoWork(Dictionary<int, IPart> specification, int partIndex)
+        public override bool DoWork(Dictionary<int, IPart> specification)
         {
-            // in case you don`t really need Key here (see comment above)
-            // consider
+
             foreach (KeyValuePair<int, IPart> pair in specification)
             {
                 var part = pair.Value;
-                if (pair.Key == partIndex && !part.IsDone)
+                if (part.IsDone)
                 {
-                    Console.WriteLine($"**************I completed {part.Name}\n");
-                    part.IsDone = true;
-                    return part.IsDone;
-                }
-                else if (part.IsDone)
-                {
+                    // go to the next part
+                    
                 }
                 else
                 {
-                    Console.WriteLine($"I can't do {part.Name}" +
-                        $" because {specification[partIndex].Name} is not completed");
+                    CheckIfCanBeDone(part);
+                    
                 }
             }
 
             return false;
         }
+        private bool CheckIfCanBeDone(IPart part)
+        {
+            var plan = new Plan();
+            var typePart = plan.GetHousePartTypesWithIndexes().Where(_=>_.Value == 0).Select(_=>_.Key);
+
+            if (typePart.GetType() == typeof(part))
+            {
+                Construct(part);
+            }
+            else
+            {
+                Console.WriteLine($"I can't do {part.Name}" +
+                    $" because {typeof(IPart)} is not completed");
+            }
+            return false;
+        }
+        
+        private bool Construct(IPart part)
+        {
+            Console.WriteLine($"**************I completed {part.Name}\n");
+            part.IsDone = true;
+            return part.IsDone;
+        }
+    
+    
     }
 }

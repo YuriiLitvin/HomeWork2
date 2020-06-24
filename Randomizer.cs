@@ -7,6 +7,7 @@ namespace BuildingHouse
     {
         public static Dictionary<int,T> GetUnsorted(List<T> list)
         {
+            //TODO: do something with Random
             Random rand = new Random();
             
             Dictionary<int, T> ordered = new Dictionary<int, T>();

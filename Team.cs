@@ -17,7 +17,7 @@
             {
                 foreach (KeyValuePair<int, Worker> worker in workers)
                 {
-                    var isDone = worker.Value.TryDoWork(specification, partIndex);
+                    var isDone = worker.Value.TryDoWork(specification);
 
                     if (isDone)
                     {

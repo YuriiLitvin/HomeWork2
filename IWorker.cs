@@ -9,7 +9,7 @@ namespace BuildingHouse
 
         string Position { get; set; }
         
-        bool DoWork(Dictionary<int, IPart> specification, int partIndex);
+        bool DoWork(Dictionary<int, IPart> specification);
         
         void GetDayOff();
     }

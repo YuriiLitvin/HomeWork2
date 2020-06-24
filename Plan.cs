@@ -13,7 +13,7 @@
             this.Specification = this.GetSpecification();
         }
 
-        private Dictionary<Type, int> GetHousePartTypesWithIndexes()
+        public Dictionary<Type, int> GetHousePartTypesWithIndexes()
         {
             var partTypesWithIndexes = new Dictionary<Type, int>
             {
