@@ -8,16 +8,7 @@
     {
         public Dictionary<int, IPart> Specification { get; }
 
-        public Dictionary<Type,int> PartTypesWithIndexes { get; set; }
-        public Plan()
-        {
-            this.Specification = this.GetSpecification();
-            this.PartTypesWithIndexes = this.GetHousePartTypesWithIndexes();
-        }
-
-        public Dictionary<Type, int> GetHousePartTypesWithIndexes()
-        {
-            var partTypesWithIndexes = new Dictionary<Type, int>
+        public static Dictionary<Type,int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
             {
                 { typeof(Roof), 4 },
                 { typeof(Door), 2 },
@@ -25,8 +16,25 @@
                 { typeof(Window), 3 },
                 { typeof(Wall), 1 },
             };
-            return partTypesWithIndexes;
+        
+        public Plan()
+        {
+            this.Specification = this.GetSpecification();
+            //PartTypesWithIndexes = this.GetHousePartTypesWithIndexes();
         }
+
+        //public Dictionary<Type, int> GetHousePartTypesWithIndexes()
+        //{
+        //    var partTypesWithIndexes = new Dictionary<Type, int>
+        //    {
+        //        { typeof(Roof), 4 },
+        //        { typeof(Door), 2 },
+        //        { typeof(Basement), 0 },
+        //        { typeof(Window), 3 },
+        //        { typeof(Wall), 1 },
+        //    };
+        //    return partTypesWithIndexes;
+        //}
 
         // return List<IPart> here; List already has index!
         // randomize another way e.g. newList[0] = oldList[random];
@@ -39,7 +47,7 @@
 
         private List<IPart> GetConstructionList()
         {
-            var housePartTypes = this.GetHousePartTypesWithIndexes()
+            var housePartTypes = PartTypesWithIndexes
                 .OrderBy(_ => _.Value)
                 .Select(_ => _.Key);
 

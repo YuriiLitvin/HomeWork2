@@ -12,7 +12,7 @@ namespace BuildingHouse
 
             // if team will own personnel, and house will own plan
             // this will look like myTeam.GetToWork(house);
-            myTeam.GetToWork(plan.Specification);
+            myTeam.GetToWork(plan);
 
             Console.ReadKey();
         }

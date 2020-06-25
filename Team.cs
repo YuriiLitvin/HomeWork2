@@ -8,16 +8,16 @@
     {
         public TeamCreater Personnel { get; set; } = new TeamCreater();
 
-        public void GetToWork(Dictionary<int, IPart> specification) 
+        public void GetToWork(Plan plan) 
         {
             var workers = this.Personnel.Team;
 
             var partIndex = 0;
-            while (partIndex < specification.Count)
+            while (partIndex < plan.Specification.Count)
             {
                 foreach (KeyValuePair<int, Worker> worker in workers)
                 {
-                    var isDone = worker.Value.TryDoWork(specification);
+                    var isDone = worker.Value.TryDoWork(plan);
 
                     if (isDone)
                     {
@@ -31,7 +31,7 @@
 
             while (true)
             {
-                var finishReport = teamLeader.TryDoWork(specification);
+                var finishReport = teamLeader.TryDoWork(plan);
                 if (finishReport)
                 {
                     break;

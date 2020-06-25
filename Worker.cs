@@ -11,14 +11,14 @@ namespace BuildingHouse
 
         public EnergyManager EnergyManager { get; set; } = new EnergyManager();
 
-        public abstract bool DoWork(Dictionary<int, IPart> specification);
+        public abstract bool DoWork(Plan plan);
 
         public void GetDayOff() => Console.WriteLine("I can't work now. I need day off");
 
         public void GetNameAndPosition() => Console.WriteLine($"\n{this.Name} " +
                       $"{this.Position}");
 
-        public bool TryDoWork(Dictionary<int, IPart> specification)
+        public bool TryDoWork(Plan plan)
         {
 
             this.GetNameAndPosition();
@@ -26,7 +26,7 @@ namespace BuildingHouse
             if (this.EnergyManager.CanDoWork())
             {
                 this.EnergyManager.Decrease();
-                return this.DoWork(specification);
+                return this.DoWork(plan);
             }
             else
             {

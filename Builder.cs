@@ -6,22 +6,24 @@ namespace BuildingHouse
 {
     class Builder : Worker
     {
-        public Plan Plan { get; set; } = new Plan();
-        
-        public override bool DoWork(Dictionary<int, IPart> specification)
+        public override bool DoWork(Plan plan)
         {
-            var partTypes = Plan.PartTypesWithIndexes;
+            var partTypesWithIndexes = Plan.PartTypesWithIndexes;
 
-            var typePart = partTypes.OrderBy(_ => _.Value).Select(_ => _.Key).First();
+            var partType = partTypesWithIndexes.OrderBy(_ => _.Value).Select(_ => _.Key).First();
 
 
-            var notCompletedParts = specification
-                .Where(_ => _.Value.IsDone == false && _.Value.GetType() == typePart)
+            var notCompletedParts = plan.Specification
+                .Where(_ => _.Value.IsDone == false && _.Value.GetType() == partType)
                 .Select(_ => _.Value);
 
             foreach (var part in notCompletedParts)
             {
                 if (Construct(part)) break;
+            }
+            if (plan.Specification.Values.All(_ => _.GetType() == partType && _.IsDone))
+            {
+                partTypesWithIndexes.Remove(partType);
             }
 
             return true;  
@@ -31,11 +33,11 @@ namespace BuildingHouse
             
 
         //    var plan = new Plan();
-        //    var typePart = plan.GetHousePartTypesWithIndexes()
+        //    var partType = plan.GetHousePartTypesWithIndexes()
         //                       .Where(_ => _.Value == indexBuild)
         //                       .Select(_ => _.Key);
 
-        //    if (typePart.GetType() == typeof(part))
+        //    if (partType.GetType() == typeof(part))
         //    {
         //        Construct(part);
         //    }
