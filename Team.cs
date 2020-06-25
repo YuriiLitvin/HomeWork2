@@ -31,7 +31,7 @@
 
             while (true)
             {
-                var finishReport = teamLeader.TryDoWork(specification, partIndex);
+                var finishReport = teamLeader.TryDoWork(specification);
                 if (finishReport)
                 {
                     break;

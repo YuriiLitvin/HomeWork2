@@ -8,9 +8,11 @@
     {
         public Dictionary<int, IPart> Specification { get; }
 
+        public Dictionary<Type,int> PartTypesWithIndexes { get; set; }
         public Plan()
         {
             this.Specification = this.GetSpecification();
+            this.PartTypesWithIndexes = this.GetHousePartTypesWithIndexes();
         }
 
         public Dictionary<Type, int> GetHousePartTypesWithIndexes()

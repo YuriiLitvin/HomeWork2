@@ -6,42 +6,46 @@ namespace BuildingHouse
 {
     class Builder : Worker
     {
+        public Plan Plan { get; set; } = new Plan();
+        
         public override bool DoWork(Dictionary<int, IPart> specification)
         {
+            var partTypes = Plan.PartTypesWithIndexes;
 
-            foreach (KeyValuePair<int, IPart> pair in specification)
+            var typePart = partTypes.OrderBy(_ => _.Value).Select(_ => _.Key).First();
+
+
+            var notCompletedParts = specification
+                .Where(_ => _.Value.IsDone == false && _.Value.GetType() == typePart)
+                .Select(_ => _.Value);
+
+            foreach (var part in notCompletedParts)
             {
-                var part = pair.Value;
-                if (part.IsDone)
-                {
-                    // go to the next part
-                    
-                }
-                else
-                {
-                    CheckIfCanBeDone(part);
-                    
-                }
+                if (Construct(part)) break;
             }
 
-            return false;
+            return true;  
         }
-        private bool CheckIfCanBeDone(IPart part)
-        {
-            var plan = new Plan();
-            var typePart = plan.GetHousePartTypesWithIndexes().Where(_=>_.Value == 0).Select(_=>_.Key);
+        //private bool CheckIfCanBeDone(IPart part)
+        //{
+            
 
-            if (typePart.GetType() == typeof(part))
-            {
-                Construct(part);
-            }
-            else
-            {
-                Console.WriteLine($"I can't do {part.Name}" +
-                    $" because {typeof(IPart)} is not completed");
-            }
-            return false;
-        }
+        //    var plan = new Plan();
+        //    var typePart = plan.GetHousePartTypesWithIndexes()
+        //                       .Where(_ => _.Value == indexBuild)
+        //                       .Select(_ => _.Key);
+
+        //    if (typePart.GetType() == typeof(part))
+        //    {
+        //        Construct(part);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"I can't do {part.Name}" +
+        //            $" because {typeof(IPart)} is not completed");
+        //    }
+        //    return false;
+        //}
         
         private bool Construct(IPart part)
         {
