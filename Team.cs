@@ -23,6 +23,10 @@
                     {
                         partIndex++;
                     }
+                    if (partIndex==plan.Specification.Count)
+                    {
+                        break;
+                    }
                 }
             }
 
