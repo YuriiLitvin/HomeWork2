@@ -15,9 +15,9 @@
             var partIndex = 0;
             while (partIndex < plan.Specification.Count)
             {
-                foreach (KeyValuePair<int, Worker> worker in workers)
+                foreach (var worker in workers)
                 {
-                    var isDone = worker.Value.TryDoWork(plan);
+                    var isDone = worker.TryDoWork(plan);
 
                     if (isDone)
                     {
@@ -30,8 +30,7 @@
                 }
             }
 
-            var teamLeader = workers.Values.
-                        First(x => x.Position.Contains(nameof(TeamLeader)));
+            var teamLeader = workers.First(x => x.Position.Contains(nameof(TeamLeader)));
 
             while (true)
             {

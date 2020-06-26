@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace BuildingHouse
 {
@@ -27,7 +26,7 @@ namespace BuildingHouse
             return false;  
         }
 
-        private Type GetPartTypeToWorkWith()
+        private static Type GetPartTypeToWorkWith()
         {
             var partTypesWithIndexes = Plan.PartTypesWithIndexes;
             var partTypeIndex = partTypesWithIndexes.Min(_ => _.Value);
@@ -36,31 +35,29 @@ namespace BuildingHouse
                                                .First();
             return partType;
         }
-        private IEnumerable<IPart> GetUnDoneParts(Plan plan)
+        private static IEnumerable<IPart> GetUnDoneParts(Plan plan)
         {
-            var unDoneParts = plan.Specification.Where(_ => _.Value.IsDone == false)
-                                               .Select(_ => _.Value);
+            var unDoneParts = plan.Specification.Where(_ => _.IsDone == false).ToList(); 
+                                               
             return unDoneParts;
         }
-        private void RemoveCompeletedPartType(Plan plan, Type partType)
+        private static void RemoveCompeletedPartType(Plan plan, Type partType)
         {
-            if (plan.Specification.Where(_ => _.Value.GetType() == partType).All(_ => _.Value.IsDone))
+            if (plan.Specification.Where(_ => _.GetType() == partType).All(_ => _.IsDone))
             {
                 Plan.PartTypesWithIndexes.Remove(partType);
             }
         }
-        private bool Construct(IPart part)
+        private static void Construct(IPart part)
         {
-            Console.WriteLine($"**************I completed {part.Name}\n");
+            Console.WriteLine($"**************I completed {part}\n");
             part.IsDone = true;
-            return part.IsDone;
         }
-        private bool GetDenied(IPart part, Type partType)
+        private static void GetDenied(IPart part, Type partType)
         {
             Console.WriteLine($"I can't do {part.Name}" +
-                    $" because {partType} is not completed");
+                    $" because {partType.Name} is not completed");
             part.IsDone = false;
-            return part.IsDone;
         }
 
     }

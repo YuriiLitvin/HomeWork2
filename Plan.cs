@@ -6,7 +6,7 @@
 
     public class Plan
     {
-        public Dictionary<int, IPart> Specification { get; }
+        public List<IPart> Specification { get; }
 
         public static Dictionary<Type,int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
             {
@@ -20,25 +20,11 @@
         public Plan()
         {
             this.Specification = this.GetSpecification();
-            //PartTypesWithIndexes = this.GetHousePartTypesWithIndexes();
         }
-
-        //public Dictionary<Type, int> GetHousePartTypesWithIndexes()
-        //{
-        //    var partTypesWithIndexes = new Dictionary<Type, int>
-        //    {
-        //        { typeof(Roof), 4 },
-        //        { typeof(Door), 2 },
-        //        { typeof(Basement), 0 },
-        //        { typeof(Window), 3 },
-        //        { typeof(Wall), 1 },
-        //    };
-        //    return partTypesWithIndexes;
-        //}
 
         // return List<IPart> here; List already has index!
         // randomize another way e.g. newList[0] = oldList[random];
-        public Dictionary<int, IPart> GetSpecification()
+        public List<IPart> GetSpecification()
         {
             var constructionList = this.GetConstructionList();
 

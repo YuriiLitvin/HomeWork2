@@ -7,7 +7,7 @@ namespace BuildingHouse
 {
     class TeamCreater
     {
-        public Dictionary<int, Worker> Team { get; set; }
+        public List<Worker> Team { get; set; }
 
         private readonly int LeaderCount;
 
@@ -52,7 +52,7 @@ namespace BuildingHouse
             return builders;
         }
 
-        private Dictionary<int, Worker> CreateTeam()
+        private List<Worker> CreateTeam()
         {
             List<Worker> workers = CreateLeaders().Concat(CreateBuilders()).ToList();
             return Randomizer<Worker>.GetUnsorted(workers);

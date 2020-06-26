@@ -27,13 +27,11 @@ namespace BuildingHouse
             {
                 this.EnergyManager.Decrease();
                 return this.DoWork(plan);
+                
             }
-            else
-            {
-                this.GetDayOff();
-                this.EnergyManager.Increase();
-            }
-
+            
+            this.GetDayOff();
+            this.EnergyManager.Increase();
             return false;
         }
     }

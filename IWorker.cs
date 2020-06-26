@@ -5,7 +5,7 @@ namespace BuildingHouse
 {
     interface IWorker
     {
-        string Name { get; set; }
+        //string Name { get; set; }
 
         string Position { get; set; }
         

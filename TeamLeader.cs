@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BuildingHouse
@@ -13,8 +12,7 @@ namespace BuildingHouse
 
             // try to use LINQ .Aggregate function to count percentage
             // it will be hard, but awesome!
-            var completedParts = plan.Specification.Where(pair => pair.Value.IsDone)
-                                         .Select(pair => pair.Value.Name);
+            var completedParts = plan.Specification.Where(_ => _.IsDone).ToList();
 
             foreach (var part in completedParts)
             {
@@ -25,7 +23,7 @@ namespace BuildingHouse
             Console.WriteLine($"Construction completed: {totalPercent}%\n");
 
             // make from everything above method "ReportProgress"
-            return plan.Specification.All(pair => pair.Value.IsDone);
+            return plan.Specification.All(_ => _.IsDone);
         }
     }
 }
