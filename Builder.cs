@@ -22,7 +22,6 @@ namespace BuildingHouse
                     GetDenied(part, partType);
                 }
             }
-
             return false;  
         }
 
@@ -35,12 +34,14 @@ namespace BuildingHouse
                                                .First();
             return partType;
         }
+        
         private static IEnumerable<IPart> GetUnDoneParts(Plan plan)
         {
             var unDoneParts = plan.Specification.Where(_ => _.IsDone == false).ToList(); 
                                                
             return unDoneParts;
         }
+       
         private static void RemoveCompeletedPartType(Plan plan, Type partType)
         {
             if (plan.Specification.Where(_ => _.GetType() == partType).All(_ => _.IsDone))
@@ -50,13 +51,13 @@ namespace BuildingHouse
         }
         private static void Construct(IPart part)
         {
-            Console.WriteLine($"**************I completed {part}\n");
+            Console.WriteLine($"**************I completed {part.Name}\n");
             part.IsDone = true;
         }
         private static void GetDenied(IPart part, Type partType)
         {
             Console.WriteLine($"I can't do {part.Name}" +
-                    $" because {partType.Name} is not completed");
+                    $" because {partType.Name}s are not completed");
             part.IsDone = false;
         }
 

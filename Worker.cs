@@ -15,13 +15,13 @@ namespace BuildingHouse
 
         public void GetDayOff() => Console.WriteLine("I can't work now. I need day off");
 
-        public void GetNameAndPosition() => Console.WriteLine($"\n{this.Name} " +
+        public void DisplayNameAndPosition() => Console.WriteLine($"\n{this.Name} " +
                       $"{this.Position}");
 
         public bool TryDoWork(Plan plan)
         {
 
-            this.GetNameAndPosition();
+            this.DisplayNameAndPosition();
 
             if (this.EnergyManager.CanDoWork())
             {

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BuildingHouse
 {
-    class TeamCreater
+    class TeamCreator
     {
         public List<Worker> Team { get; set; }
 
@@ -13,7 +13,7 @@ namespace BuildingHouse
 
         private readonly int BuilderCount;
 
-        public TeamCreater()
+        public TeamCreator()
         {
             this.LeaderCount = this.GetWorkerCount(nameof(TeamLeader));
             this.BuilderCount = this.GetWorkerCount(nameof(Builder));

@@ -16,7 +16,7 @@ namespace BuildingHouse
 
             foreach (var part in completedParts)
             {
-                Console.WriteLine($"{part} completed");
+                Console.WriteLine($"{part.Name} completed");
                 totalPercent += partPercent;
             }
 

@@ -6,70 +6,84 @@
 
     public class Plan
     {
-        public List<IPart> Specification { get; }
+       //public List<IPart> Specification { get; }
 
-        public static Dictionary<Type,int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
-            {
-                { typeof(Roof), 4 },
-                { typeof(Door), 2 },
-                { typeof(Basement), 0 },
-                { typeof(Window), 3 },
-                { typeof(Wall), 1 },
-            };
+        public static List<IPart> parts = new List<IPart>
+        {
+            new Wall(),
+            new Window(),
+            new Roof(),
+            new Window(),
+            new Door(),
+            new Wall(),
+            new Window(),
+            new Wall(),
+            new Basement(),
+            new Wall(),
+            new Window()
+        };
         
-        public Plan()
+        
+        public static Dictionary<Type, int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
         {
-            this.Specification = this.GetSpecification();
-        }
+            { typeof(Roof), 4 },
+            { typeof(Door), 2 },
+            { typeof(Basement), 0 },
+            { typeof(Window), 3 },
+            { typeof(Wall), 1 },
+        };
 
-        // return List<IPart> here; List already has index!
-        // randomize another way e.g. newList[0] = oldList[random];
-        public List<IPart> GetSpecification()
-        {
-            var constructionList = this.GetConstructionList();
+        //public Plan()
+        //{
+        //    this.Specification = this.CreateSpecification();
+        //}
+        
+        //public List<IPart> CreateSpecification()
+        //{
+        //    var constructionList = this.CreateConstructions();
 
-            return Randomizer<IPart>.GetUnsorted(constructionList);
-        }
+        //    return Randomizer<IPart>.GetUnsorted(constructionList);
+        //}
 
-        private List<IPart> GetConstructionList()
-        {
-            var housePartTypes = PartTypesWithIndexes
-                .OrderBy(_ => _.Value)
-                .Select(_ => _.Key);
+        //private List<IPart> CreateConstructions()
+        //{
+        //    var housePartTypes = PartTypesWithIndexes
+        //        .OrderBy(_ => _.Value)
+        //        .Select(_ => _.Key);
 
-            var constructionList = new List<IPart>();
-            foreach (var part in housePartTypes)
-            {
-                Console.WriteLine($"Please enter a number of {part.Name}s");
-                var partCount = Convert.ToInt32(Console.ReadLine());
-                foreach (var item in this.GetParts(part, partCount))
-                {
-                    constructionList.Add(item);
-                }
-            }
+        //    var constructionList = new List<IPart>();
+        //    foreach (var part in housePartTypes)
+        //    {
+        //        Console.WriteLine($"Please enter a number of {part.Name}s");
+        //        var partCount = Convert.ToInt32(Console.ReadLine());
+        //        foreach (var item in this.CreateParts(part, partCount))
+        //        {
+        //            constructionList.Add(item);
+        //        }
+        //    }
 
-            return constructionList;
-        }
+        //    return constructionList;
+        //}
 
-        private List<IPart> GetParts(Type partType, int partCount)
-        {
-            var parts = new List<IPart>();
+        //private List<IPart> CreateParts(Type partType, int partCount)
+        //{
+        //    var parts = new List<IPart>();
 
-            for (int i = 1; i <= partCount; i++)
-            {
-                var createdPart = this.CreatePart(partType);
+        //    for (int i = 1; i <= partCount; i++)
+        //    {
+        //        var createdPart = this.CreatePart(partType);
 
-                createdPart.Name = partType.Name + i;
-                createdPart.IsDone = false;
-                parts.Add(createdPart);
-            }
+        //        createdPart.Name = partType.Name + i;
+        //        createdPart.IsDone = false;
+        //        parts.Add(createdPart);
+        //    }
 
-            return parts;
-        }
+        //    return parts;
+        //}
 
-        private IPart CreatePart(Type partType)
-        {
-            return Activator.CreateInstance(partType) as IPart;
-        }
+        //private IPart CreatePart(Type partType)
+        //{
+        //    return Activator.CreateInstance(partType) as IPart;
+        //}
     }
 }

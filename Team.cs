@@ -6,7 +6,7 @@
 
     class Team
     {
-        public TeamCreater Personnel { get; set; } = new TeamCreater();
+        public TeamCreator Personnel { get; set; } = new TeamCreator();
 
         public void GetToWork(Plan plan) 
         {
