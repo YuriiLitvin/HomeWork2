@@ -6,6 +6,7 @@
 
     public class Plan
     {
+        //public List<IPart> House { get; }
         public List<IPart> Specification { get; }
         
         private static readonly List<IPart> parts = new List<IPart>
@@ -35,6 +36,7 @@
         public Plan()
         {
             this.Specification = this.CreateSpecification();
+            //this.House = this.CreateSpecification();
         }
 
         public List<IPart> CreateSpecification()

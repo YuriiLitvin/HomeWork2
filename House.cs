@@ -5,9 +5,10 @@ namespace BuildingHouse
 {
     class House
     {
-        public House (List<IPart> Parts)
+        private List<IPart> Parts; 
+        public House (List<IPart> parts)
         {
-            //Parts = Plan.parts;
+            Parts = parts;
         }
     }
 }

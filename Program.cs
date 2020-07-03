@@ -9,7 +9,7 @@ namespace BuildingHouse
         {
             Team myTeam = new Team();
             Plan plan = new Plan();
-            
+            House house = new House(plan.Specification);
             // if team will own personnel, and house will own plan
             // this will look like myTeam.GetToWork(house);
             myTeam.GetToWork(plan);

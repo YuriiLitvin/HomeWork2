@@ -5,11 +5,10 @@ namespace BuildingHouse
 {
     interface IWorker
     {
-        //string Name { get; set; }
-
         string Position { get; set; }
         
-        bool DoWork(Plan plan);
+        //bool DoWork(Plan plan);
+        bool DoWork(House house);
         
         void GetDayOff();
     }
