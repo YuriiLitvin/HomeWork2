@@ -6,15 +6,23 @@
 
     public class Plan
     {
-        //private const int BasementCount = 1;
-        //private const int WallCount = 4;
-        //private const int DoorCount = 1;
-        //private const int WindowCount = 4;
-        //private const int RoofCount = 1;
-
-
         public List<IPart> Specification { get; }
-
+        
+        private static readonly List<IPart> parts = new List<IPart>
+        {
+            new Basement(),
+            new Wall(),
+            new Wall(),
+            new Wall(),
+            new Wall(),
+            new Door(),
+            new Window(),
+            new Window(),
+            new Window(),
+            new Window(),
+            new Roof()
+        };
+        
         public static Dictionary<Type, int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
         {
             { typeof(Basement), 0 },
@@ -54,21 +62,8 @@
 
         private List<IPart> CreateParts(Type partType)
         {
-            var parts = new List<IPart> 
-            {
-                new Basement(),
-                new Wall(),
-                new Wall(),
-                new Wall(),
-                new Wall(),
-                new Door(),
-                new Window(),
-                new Window(), 
-                new Window(),
-                new Window(),
-                new Roof()
-            };
-
+            var createdParts = new List<IPart>();
+            
             var partCount = parts.Where(_ => _.GetType() == partType).Count();
 
             for (int i = 1; i <= partCount; i++)
@@ -77,10 +72,10 @@
 
                 createdPart.Name = partType.Name + i;
                 createdPart.IsDone = false;
-                parts.Add(createdPart);
+                createdParts.Add(createdPart);
             }
 
-            return parts;
+            return createdParts;
         }
 
         private IPart CreatePart(Type partType)
