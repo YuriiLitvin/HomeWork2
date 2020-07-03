@@ -28,10 +28,12 @@ namespace BuildingHouse
         private static Type GetPartTypeToWorkWith()
         {
             var partTypesWithIndexes = Plan.PartTypesWithIndexes;
-            var partTypeIndex = partTypesWithIndexes.Min(_ => _.Value);
-            var partType = partTypesWithIndexes.Where(_ => _.Value == partTypeIndex)
-                                               .Select(_ => _.Key)
-                                               .First();
+            //var partTypeIndex = partTypesWithIndexes.Min(_ => _.Value);
+            //var partType = partTypesWithIndexes.Where(_ => _.Value == partTypeIndex)
+            //                                   .Select(_ => _.Key)
+            //                                   .First();
+            var partType = partTypesWithIndexes.Select(_ => _.Key).First();
+            
             return partType;
         }
         

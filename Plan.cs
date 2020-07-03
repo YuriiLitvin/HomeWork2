@@ -6,84 +6,86 @@
 
     public class Plan
     {
-       //public List<IPart> Specification { get; }
+        //private const int BasementCount = 1;
+        //private const int WallCount = 4;
+        //private const int DoorCount = 1;
+        //private const int WindowCount = 4;
+        //private const int RoofCount = 1;
 
-        public static List<IPart> parts = new List<IPart>
-        {
-            new Wall(),
-            new Window(),
-            new Roof(),
-            new Window(),
-            new Door(),
-            new Wall(),
-            new Window(),
-            new Wall(),
-            new Basement(),
-            new Wall(),
-            new Window()
-        };
-        
-        
+
+        public List<IPart> Specification { get; }
+
         public static Dictionary<Type, int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
         {
-            { typeof(Roof), 4 },
-            { typeof(Door), 2 },
             { typeof(Basement), 0 },
-            { typeof(Window), 3 },
             { typeof(Wall), 1 },
+            { typeof(Door), 2 },
+            { typeof(Window), 3 },
+            { typeof(Roof), 4 },
         };
 
-        //public Plan()
-        //{
-        //    this.Specification = this.CreateSpecification();
-        //}
-        
-        //public List<IPart> CreateSpecification()
-        //{
-        //    var constructionList = this.CreateConstructions();
+        public Plan()
+        {
+            this.Specification = this.CreateSpecification();
+        }
 
-        //    return Randomizer<IPart>.GetUnsorted(constructionList);
-        //}
+        public List<IPart> CreateSpecification()
+        {
+            var constructionList = this.CreateConstructions();
 
-        //private List<IPart> CreateConstructions()
-        //{
-        //    var housePartTypes = PartTypesWithIndexes
-        //        .OrderBy(_ => _.Value)
-        //        .Select(_ => _.Key);
+            return Randomizer<IPart>.GetUnsorted(constructionList);
+        }
 
-        //    var constructionList = new List<IPart>();
-        //    foreach (var part in housePartTypes)
-        //    {
-        //        Console.WriteLine($"Please enter a number of {part.Name}s");
-        //        var partCount = Convert.ToInt32(Console.ReadLine());
-        //        foreach (var item in this.CreateParts(part, partCount))
-        //        {
-        //            constructionList.Add(item);
-        //        }
-        //    }
+        private List<IPart> CreateConstructions()
+        {
+            var housePartTypes = PartTypesWithIndexes.Select(_ => _.Key);
 
-        //    return constructionList;
-        //}
+            var constructionList = new List<IPart>();
+            foreach (var part in housePartTypes)
+            {
+                foreach (var item in this.CreateParts(part))
+                {
+                    constructionList.Add(item);
+                }
+            }
 
-        //private List<IPart> CreateParts(Type partType, int partCount)
-        //{
-        //    var parts = new List<IPart>();
+            return constructionList;
+        }
 
-        //    for (int i = 1; i <= partCount; i++)
-        //    {
-        //        var createdPart = this.CreatePart(partType);
+        private List<IPart> CreateParts(Type partType)
+        {
+            var parts = new List<IPart> 
+            {
+                new Basement(),
+                new Wall(),
+                new Wall(),
+                new Wall(),
+                new Wall(),
+                new Door(),
+                new Window(),
+                new Window(), 
+                new Window(),
+                new Window(),
+                new Roof()
+            };
 
-        //        createdPart.Name = partType.Name + i;
-        //        createdPart.IsDone = false;
-        //        parts.Add(createdPart);
-        //    }
+            var partCount = parts.Where(_ => _.GetType() == partType).Count();
 
-        //    return parts;
-        //}
+            for (int i = 1; i <= partCount; i++)
+            {
+                var createdPart = this.CreatePart(partType);
 
-        //private IPart CreatePart(Type partType)
-        //{
-        //    return Activator.CreateInstance(partType) as IPart;
-        //}
+                createdPart.Name = partType.Name + i;
+                createdPart.IsDone = false;
+                parts.Add(createdPart);
+            }
+
+            return parts;
+        }
+
+        private IPart CreatePart(Type partType)
+        {
+            return Activator.CreateInstance(partType) as IPart;
+        }
     }
 }
