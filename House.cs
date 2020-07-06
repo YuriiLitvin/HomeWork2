@@ -5,10 +5,10 @@ namespace BuildingHouse
 {
     class House
     {
-        private List<IPart> Parts; 
-        public House (List<IPart> parts)
-        {
-            Parts = parts;
-        }
+        //private List<IPart> Parts; 
+        //public House (List<IPart> parts)
+        //{
+        //    Parts = parts;
+        //}
     }
 }

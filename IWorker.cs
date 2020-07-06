@@ -7,8 +7,8 @@ namespace BuildingHouse
     {
         string Position { get; set; }
         
-        //bool DoWork(Plan plan);
-        bool DoWork(House house);
+        bool DoWork(Plan plan);
+        //bool DoWork(House house);
         
         void GetDayOff();
     }
