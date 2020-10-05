@@ -8,51 +8,50 @@ namespace BuildingHouse
     {
         public override bool DoWork(Plan plan)
         {
-            var partType = GetPartTypeToWorkWith();
-            foreach (var part in GetUnDoneParts(plan))
+            var housePartType = GetPartTypeToWorkWith(plan);
+            
+            foreach (var housePart in GetPendingHouseParts(plan))
             {
-                if (part.GetType() == partType)
+                if (housePart.GetType() == housePartType)
                 {
-                    Construct(part);
-                    RemoveCompeletedPartType(plan, partType);
+                    Construct(housePart);
+                    RemoveCompeletedPartType(plan, housePartType);
                     return true;
                 }
                 else
                 {
-                    GetDenied(part, partType);
+                    GetDenied(housePart, housePartType);
                 }
             }
             return false;  
         }
 
-        private static Type GetPartTypeToWorkWith()
+        private static Type GetPartTypeToWorkWith(Plan plan)
         {
-            var partTypesWithIndexes = Plan.PartTypesWithIndexes;
-            
-            var partType = partTypesWithIndexes.Select(_ => _.Key).First();
-            
-            return partType;
+            return plan.ConstructionOrderWithCounts.Select(t => t.Key).FirstOrDefault();
         }
+
         
-        private static IEnumerable<IPart> GetUnDoneParts(Plan plan)
+        private static List<IPart> GetPendingHouseParts(Plan plan)
         {
-            var unDoneParts = plan.Specification.Where(_ => _.IsDone == false).ToList(); 
-                                               
-            return unDoneParts;
+            return plan.Specification.Where(_ => _.IsDone == false).ToList(); 
+            
         }
        
         private static void RemoveCompeletedPartType(Plan plan, Type partType)
         {
             if (plan.Specification.Where(_ => _.GetType() == partType).All(_ => _.IsDone))
             {
-                Plan.PartTypesWithIndexes.Remove(partType);
+                plan.ConstructionOrderWithCounts.Remove(partType);
             }
         }
+        
         private static void Construct(IPart part)
         {
             Console.WriteLine($"**************I completed {part.Name}\n");
             part.IsDone = true;
         }
+        
         private static void GetDenied(IPart part, Type partType)
         {
             Console.WriteLine($"I can't do {part.Name}" +

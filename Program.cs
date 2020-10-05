@@ -8,11 +8,10 @@ namespace BuildingHouse
         static void Main(string[] args)
         {
             Team myTeam = new Team();
-            Plan plan = new Plan();
-            //House house = new House(plan.Specification);
-            // if team will own personnel, and house will own plan
-            // this will look like myTeam.GetToWork(house);
-            myTeam.GetToWork(plan);
+            
+            House house = new House();
+            
+            myTeam.GetToWork(house);
 
             Console.ReadKey();
         }

@@ -13,7 +13,7 @@ namespace BuildingHouse
         private const int DecreaseMax = 20;
         
         //TODO: do something with Random
-        private static readonly Random Random = new Random();
+        private static readonly Random random = new Random();
 
         private int energy;
 
@@ -27,10 +27,10 @@ namespace BuildingHouse
            return this.energy >= MinEnergyLevel;
         }
 
-        public void GetInitialEnergyLevel() => this.energy = Random.Next(MinEnergyLevel, MaxEnergyLevel);
+        public void GetInitialEnergyLevel() => this.energy = random.Next(MinEnergyLevel, MaxEnergyLevel);
 
-        public void Increase() => this.energy += Random.Next(IncreaseMin, IncreaseMax);
+        public void Increase() => this.energy += random.Next(IncreaseMin, IncreaseMax);
 
-        public void Decrease() => this.energy -= Random.Next(DecreaseMin, DecreaseMax);
+        public void Decrease() => this.energy -= random.Next(DecreaseMin, DecreaseMax);
     }
 }

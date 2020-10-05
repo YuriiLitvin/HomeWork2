@@ -6,33 +6,34 @@
     {
         public TeamCreator Personnel { get; set; } = new TeamCreator();
 
-        public void GetToWork(Plan plan) 
+        public void GetToWork(House house) 
         {
             var workers = this.Personnel.Team;
-
+            var housePlan = house.Plan;
+            
             var partIndex = 0;
-            while (partIndex < plan.Specification.Count)
+            while (partIndex < housePlan.Specification.Count)
             {
                 foreach (var worker in workers)
                 {
-                    var isDone = worker.TryDoWork(plan);
+                    var isDone = worker.TryDoWork(housePlan);
 
                     if (isDone)
                     {
                         partIndex++;
                     }
-                    if (partIndex==plan.Specification.Count)
+                    if (partIndex== housePlan.Specification.Count)
                     {
                         break;
                     }
                 }
             }
 
-            var teamLeader = workers.First(x => x.Position.Contains(nameof(TeamLeader)));
+            var teamLeader = workers.First(t => t.Position.Contains(nameof(TeamLeader)));
 
             while (true)
             {
-                var finishReport = teamLeader.TryDoWork(plan);
+                var finishReport = teamLeader.TryDoWork(housePlan);
                 if (finishReport)
                 {
                     break;

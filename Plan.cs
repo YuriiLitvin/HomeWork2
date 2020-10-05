@@ -6,67 +6,54 @@
 
     public class Plan
     {
-        //public List<IPart> House { get; }
         public List<IPart> Specification { get; }
-        
-        private static readonly List<IPart> parts = new List<IPart>
+
+        public Dictionary<Type, int> ConstructionOrderWithCounts = new Dictionary<Type, int>
         {
-            new Basement(),
-            new Wall(),
-            new Wall(),
-            new Wall(),
-            new Wall(),
-            new Door(),
-            new Window(),
-            new Window(),
-            new Window(),
-            new Window(),
-            new Roof()
-        };
-        
-        public static Dictionary<Type, int> PartTypesWithIndexes { get; set; } = new Dictionary<Type, int>
-        {
-            { typeof(Basement), 0 },
-            { typeof(Wall), 1 },
-            { typeof(Door), 2 },
-            { typeof(Window), 3 },
-            { typeof(Roof), 4 },
+            { typeof(Basement),1},
+            { typeof(Wall),4},
+            { typeof(Door),1},
+            { typeof(Window),4},
+            { typeof(Roof),1}
         };
 
         public Plan()
         {
             this.Specification = this.CreateSpecification();
-            //this.House = this.CreateSpecification();
         }
 
         public List<IPart> CreateSpecification()
         {
-            var constructionList = this.CreateConstructions();
+            var constructionPlan = this.CreateConstructionPlan();
 
-            return Randomizer<IPart>.GetUnsorted(constructionList);
+            return Randomizer<IPart>.GetDisordered(constructionPlan);
         }
 
-        private List<IPart> CreateConstructions()
+        private List<IPart> CreateConstructionPlan()
         {
-            var housePartTypes = PartTypesWithIndexes.Select(_ => _.Key);
+            var partTypes = ConstructionOrderWithCounts.Select(_ => _.Key);
+            
+            var constructionPlan = new List<IPart>();
 
-            var constructionList = new List<IPart>();
-            foreach (var part in housePartTypes)
+            foreach (var partType in partTypes)
             {
-                foreach (var item in this.CreateParts(part))
+                foreach (var part in this.CreateParts(partType))
                 {
-                    constructionList.Add(item);
+                    constructionPlan.Add(part);
                 }
             }
 
-            return constructionList;
+            return constructionPlan;
         }
 
         private List<IPart> CreateParts(Type partType)
         {
             var createdParts = new List<IPart>();
-            
-            var partCount = parts.Where(_ => _.GetType() == partType).Count();
+
+            var partCount = ConstructionOrderWithCounts
+                .Where(_ => _.Key == partType)
+                .Select(_ => _.Value)
+                .FirstOrDefault();
 
             for (int i = 1; i <= partCount; i++)
             {
@@ -80,9 +67,9 @@
             return createdParts;
         }
 
-        private IPart CreatePart(Type partType)
+        private IPart CreatePart(Type type)
         {
-            return Activator.CreateInstance(partType) as IPart;
+            return Activator.CreateInstance(type) as IPart;
         }
     }
 }

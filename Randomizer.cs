@@ -5,7 +5,7 @@ namespace BuildingHouse
 {
     public static class Randomizer<T>
     {
-        public static List<T> GetUnsorted(List<T> list)
+        public static List<T> GetDisordered(List<T> list)
         {
             //TODO: do something with Random
             Random rand = new Random();
