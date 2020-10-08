@@ -22,7 +22,7 @@
                     {
                         partIndex++;
                     }
-                    if (partIndex== housePlan.Specification.Count)
+                    else if (partIndex== housePlan.Specification.Count)
                     {
                         break;
                     }

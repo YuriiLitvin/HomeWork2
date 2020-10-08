@@ -52,8 +52,8 @@
 
             var partCount = ConstructionOrderWithCounts
                 .Where(_ => _.Key == partType)
-                .Select(_ => _.Value)
-                .FirstOrDefault();
+                .FirstOrDefault().Value;
+
 
             for (int i = 1; i <= partCount; i++)
             {
