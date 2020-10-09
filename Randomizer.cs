@@ -7,7 +7,6 @@ namespace BuildingHouse
     {
         public static List<T> GetDisordered(List<T> list)
         {
-            //TODO: do something with Random
             Random rand = new Random();
 
             List<T> disorderedList = new List<T>();
